@@ -1,0 +1,8 @@
+{
+  "short_name": "React App",
+  "name": "CTT Bernex",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#FFF100",
+  "background_color": "#232C33"
+}
