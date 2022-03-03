@@ -7,7 +7,7 @@ let theme = createTheme({
       main: '#FFF100',
     },
     secondary: {
-      main: '#8075FF',
+      main: '#232C33',
     },
     background: {
       default: '#232C33',
@@ -45,12 +45,12 @@ let theme = createTheme({
   components: {
     MuiAppBar: {
       defaultProps: {
-        color: 'transparent',
+        color: 'secondary',
       },
     },
     MuiButtonBase: {
       defaultProps: {
-        disableRipple: true,
+        disableRipple: false,
       },
     },
     MuiLink: {
