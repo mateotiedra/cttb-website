@@ -1,14 +1,12 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { Heading, jsx } from 'theme-ui';
-
+import React from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 
 function Home() {
+  console.log('hello');
   return (
-    <div>
+    <>
       <Navbar />
-    </div>
+    </>
   );
 }
 

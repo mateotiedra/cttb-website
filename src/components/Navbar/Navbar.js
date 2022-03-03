@@ -1,64 +1,63 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import React from 'react';
+import { css } from '@emotion/react';
 
 import NavbarLogic from './NavbarLogic';
-import { Heading, jsx, Link } from 'theme-ui';
 
 import ClubLogo from '../../assets/svgs/logo.png';
+import { AppBar, Link, Typography } from '@mui/material';
 
 function Navbar(props) {
   const { navLinksObj } = NavbarLogic();
   return (
-    <header sx={{ bg: 'background', py: 1 }}>
-      <div
+    <AppBar
+      elevation={0}
+      sx={{
+        display: 'flex',
+        flexDirection: 'row',
+        px: 2,
+      }}
+    >
+      <Link
         sx={{
-          px: 6,
           display: 'flex',
+          flexDirection: 'row',
           alignItems: 'center',
+          height: '70px',
+          ml: 2,
         }}
+        href='/'
       >
-        <Link
+        <img src={ClubLogo} alt='Logo' />
+        <Typography
+          variant='h4'
           sx={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            height: '70px',
+            textTransform: 'uppercase',
+            fontWeight: 600,
+            ml: 2,
           }}
-          href='/'
         >
-          <img src={ClubLogo} alt='Logo' />
-          <Heading
+          CTT Bernex
+        </Typography>
+      </Link>
+      <div sx={{ mx: 'auto' }} />
+      {navLinksObj.map((linkObj) => {
+        return (
+          <Link
+            key={linkObj.text}
+            href={linkObj.to}
             sx={{
-              textTransform: 'uppercase',
-              color: 'primary',
-              fontSize: 6,
-              ml: 2,
+              variant: 'styles.navLink',
+              ml: 5,
+              py: 2,
+              fontSize: 3,
+              display: ['none', 'none', 'inline'],
             }}
           >
-            CTT Bernex
-          </Heading>
-        </Link>
-        <div sx={{ mx: 'auto' }} />
-        {navLinksObj.map((linkObj) => {
-          return (
-            <Link
-              key={linkObj.text}
-              href={linkObj.to}
-              sx={{
-                variant: 'styles.navLink',
-                ml: 5,
-                py: 2,
-                fontSize: 3,
-                display: ['none', 'none', 'inline'],
-              }}
-            >
-              {linkObj.text}
-            </Link>
-          );
-        })}
-      </div>
-    </header>
+            {linkObj.text}
+          </Link>
+        );
+      })}
+    </AppBar>
   );
 }
 
