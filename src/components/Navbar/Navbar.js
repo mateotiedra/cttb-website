@@ -101,7 +101,8 @@ function Navbar(props) {
                 px: 1,
                 py: 2,
                 textTransform: 'uppercase',
-                //color: 'primary.main',
+                color: 'text.primary',
+                transitionDuration: '500ms',
                 border: '2px solid transparent',
                 ':hover': {
                   borderBottomColor: 'primary.main',
