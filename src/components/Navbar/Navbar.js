@@ -1,5 +1,4 @@
 import React from 'react';
-import { css } from '@emotion/react';
 
 import NavbarLogic from './NavbarLogic';
 
@@ -16,6 +15,7 @@ import {
 } from '@mui/material';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { Box } from '@mui/system';
+import { HashLink as RouterLink } from 'react-router-hash-link';
 
 function Navbar(props) {
   const { navLinksObj, drawerOpened, toggleDrawer } = NavbarLogic();
@@ -41,10 +41,10 @@ function Navbar(props) {
           {navLinksObj.map((linkObj) => {
             return (
               <ListItem button key={linkObj.text}>
-                <Link href={linkObj}>
+                <Link component={RouterLink} to={linkObj.to}>
                   <ListItemText
                     primary={linkObj.text}
-                    sx={{ textTransform: 'uppercase' }}
+                    sx={{ textTransform: 'uppercase', color: 'text.primary' }}
                   />
                 </Link>
               </ListItem>
@@ -76,7 +76,8 @@ function Navbar(props) {
             ml: 2,
             mr: 'auto',
           }}
-          href='/'
+          component={RouterLink}
+          to='/'
         >
           <img src={ClubLogo} alt='Logo' />
           <Typography
@@ -95,7 +96,8 @@ function Navbar(props) {
           return (
             <Link
               key={linkObj.text}
-              href={linkObj.to}
+              component={RouterLink}
+              to={linkObj.to}
               sx={{
                 mx: 2,
                 px: 1,
@@ -118,11 +120,11 @@ function Navbar(props) {
           sx={{
             p: 2,
             display: { xs: 'flex', sm: 'flex', md: 'flex', lg: 'none' },
-            color: 'primary.main',
+            color: 'text.primary',
           }}
           onClick={toggleDrawer(true)}
         >
-          {drawerOpened ? <FiX size={35} /> : <FiMenu size={35} />}
+          {drawerOpened ? <FiX size={25} /> : <FiMenu size={25} />}
         </IconButton>
       </AppBar>
       {drawer}

@@ -13,7 +13,7 @@ let theme = createTheme({
       default: '#232C33',
     },
     text: {
-      primary: '#EBF2FA',
+      primary: '#FFFFFF',
     },
     error: {
       main: '#DB3A34',
@@ -62,7 +62,7 @@ let theme = createTheme({
     },
   },
   shape: {
-    borderRadius: 6,
+    borderRadius: 14,
   },
 });
 
