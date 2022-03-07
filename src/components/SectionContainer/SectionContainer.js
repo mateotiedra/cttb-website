@@ -6,7 +6,7 @@ function SectionContainer(props) {
       id={props.id}
       ref={props.ref}
       sx={{
-        px: { xs: 5, lg: 10, ...props.sx },
+        px: { xs: 5, md: 10, lg: 10, ...props.sx },
         maxWidth: '1300px',
         mx: 'auto',
       }}

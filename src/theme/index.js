@@ -2,7 +2,7 @@ import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
 let theme = createTheme({
   palette: {
-    type: 'dark',
+    mode: 'dark',
     primary: {
       main: '#FFF100',
     },
@@ -10,7 +10,8 @@ let theme = createTheme({
       main: '#232C33',
     },
     background: {
-      default: '#232C33',
+      default: '#191F24',
+      paper: '#232C33',
     },
     text: {
       primary: '#FFFFFF',
@@ -45,7 +46,7 @@ let theme = createTheme({
   components: {
     MuiAppBar: {
       defaultProps: {
-        color: 'secondary',
+        color: 'primary',
       },
     },
     MuiButtonBase: {
@@ -53,6 +54,7 @@ let theme = createTheme({
         disableRipple: false,
       },
     },
+    MuiTextFieldBase: {},
     MuiLink: {
       styleOverrides: {
         root: {

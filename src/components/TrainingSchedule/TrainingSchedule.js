@@ -21,7 +21,6 @@ function TrainingSchedule(props) {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          color: 'background.default',
           p: 2,
           flexGrow: 1,
         }}

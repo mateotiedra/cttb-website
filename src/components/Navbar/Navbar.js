@@ -65,6 +65,7 @@ function Navbar(props) {
           justifyContent: 'end',
           alignItems: 'center',
           px: 2,
+          backgroundColor: 'background.default',
         }}
       >
         <Link

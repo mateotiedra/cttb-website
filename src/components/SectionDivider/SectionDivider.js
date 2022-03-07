@@ -1,7 +1,8 @@
 import { Box } from '@mui/material';
 
 function SectionDivider(props) {
-  return <Box sx={{ py: 5 }} />;
+  const h = props.h || 1;
+  return <Box sx={{ py: 5 * h }} />;
 }
 
 export default SectionDivider;
