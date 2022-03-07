@@ -1,10 +1,14 @@
 import { useForm } from 'react-hook-form';
 
 const StageLogic = (props) => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
   const onSubmit = (data) => console.log(data);
 
-  const fields = [
+  /* const fields = [
     {
       input: register('firstName', { required: true, pattern: /^[A-Za-z]+$/i }),
     },
@@ -19,9 +23,9 @@ const StageLogic = (props) => {
       }),
     },
     { input: register('gender', { required: true }), type: 'selection' },
-  ];
+  ]; */
 
-  return { register, handleSubmit };
+  return { register, errors, handleSubmit, onSubmit: handleSubmit(onSubmit) };
 };
 
 export default StageLogic;
