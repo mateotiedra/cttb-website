@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import {
   TextField,
@@ -36,8 +37,34 @@ const LateralBox = (props) => {
   );
 };
 
+const SelectField = (props) => {
+  return (
+    <FormControl variant='filled' fullWidth>
+      <InputLabel id={`select-${props.id}-label`}>{props.label}</InputLabel>
+      <Select
+        labelId={`select-${props.id}-label`}
+        id={`select-${props.id}`}
+        label={props.label}
+        {...props.register(props.id, {
+          required: props.required === undefined ? true : props.required,
+        })}
+        defaultValue={props.options[0].value}
+      >
+        {props.options.map((option) => {
+          return (
+            <MenuItem key={option.value} value={option.value}>
+              {option.text}
+            </MenuItem>
+          );
+        })}
+      </Select>
+    </FormControl>
+  );
+};
+
 function Stage(props) {
-  const { register, errors, onSubmit } = StageLogic();
+  const { register, errors, onSubmit, weekPresenceChoserDisabled } =
+    StageLogic();
 
   const basicFieldProps = (options) => {
     return {
@@ -85,22 +112,16 @@ function Stage(props) {
                   /^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$/g,
               })}
             />
-            <FormControl variant='filled' fullWidth>
-              <InputLabel id='select-gender-label'>Age</InputLabel>
-              <Select
-                labelId='select-gender-label'
-                id='select-gender'
-                label='Genre'
-                {...register('gender', {
-                  required: true,
-                })}
-                defaultValue='male'
-              >
-                <MenuItem value={'male'}>Masculin</MenuItem>
-                <MenuItem value={'female'}>Féminin</MenuItem>
-                <MenuItem value={'other'}>Autre</MenuItem>
-              </Select>
-            </FormControl>
+            <SelectField
+              register={register}
+              id='gender'
+              label='Genre'
+              options={[
+                { value: 'male', text: 'Masculin' },
+                { value: 'female', text: 'Féminin' },
+                { value: 'other', text: 'Autre' },
+              ]}
+            />
             <Box>
               <Typography variant='h5' sx={{ mb: 1 }}>
                 Personne à prévenir en cas d'urgence
@@ -143,23 +164,26 @@ function Stage(props) {
               <Typography variant='h5' sx={{ mb: 1 }}>
                 Dates, horaires et repas
               </Typography>
-              <FormControl variant='filled' fullWidth>
-                <InputLabel id='select-dates-label'>Dates</InputLabel>
-                <Select
-                  labelId='select-dates-label'
-                  id='select-dates'
-                  label='Dates'
-                  {...register('dates', {
-                    required: true,
-                  })}
-                  defaultValue='weekA'
-                >
-                  <MenuItem value={'weekA'}>Semaine du 8 au 12 août</MenuItem>
-                  <MenuItem value={'weekB'}>Semaine du 15 au 19 août</MenuItem>
-                </Select>
-              </FormControl>
+              <SelectField
+                register={register}
+                id='dates'
+                label='Dates'
+                options={[
+                  { value: 'weekA', text: 'Semaine du 8 au 12 août' },
+                  { value: 'weekB', text: 'Semaine du 15 au 19 août' },
+                ]}
+              />
             </Box>
-            <WeekPresence />
+            <SelectField
+              register={register}
+              id='allWeek'
+              label='Participation toute la semaine'
+              options={[
+                { value: true, text: 'Oui' },
+                { value: false, text: 'Non' },
+              ]}
+            />
+            <WeekPresence disabled={weekPresenceChoserDisabled} />
             <Button
               variant='contained'
               type='submit'

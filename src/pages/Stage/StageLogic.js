@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 
 const StageLogic = (props) => {
   const {
+    watch,
     register,
     formState: { errors },
     handleSubmit,
@@ -25,7 +26,15 @@ const StageLogic = (props) => {
     { input: register('gender', { required: true }), type: 'selection' },
   ]; */
 
-  return { register, errors, handleSubmit, onSubmit: handleSubmit(onSubmit) };
+  const weekPresenceChoserDisabled = watch('allWeek', true);
+
+  return {
+    register,
+    errors,
+    handleSubmit,
+    onSubmit: handleSubmit(onSubmit),
+    weekPresenceChoserDisabled,
+  };
 };
 
 export default StageLogic;
