@@ -50,7 +50,7 @@ function Home() {
           Fédération Suisse de Tennis de Table (www.swisstabletennis.ch) et J+S
           (www.jeunesseetsport.ch) anime la structure d'entraînements accessible
           à tous les niveaux, du débutant total au joueur licencié, et à tous
-          les âges, des jeunes de 8 ans aux vétérans. fdsafsdaf sda
+          les âges, des jeunes de 8 ans aux vétérans.
         </Typography>
       </SectionContainer>
       <SectionDivider />
