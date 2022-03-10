@@ -26,7 +26,7 @@ const StageLogic = (props) => {
     { input: register('gender', { required: true }), type: 'selection' },
   ]; */
 
-  const weekPresenceChoserDisabled = watch('allWeek', true);
+  const weekPresenceChoserDisabled = watch('allWeek', 'true') === 'true';
 
   return {
     register,

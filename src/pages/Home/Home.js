@@ -67,9 +67,12 @@ function Home() {
         <Typography variant='h2' sx={{ mb: 3 }}>
           Contact
         </Typography>
-        <Typography>
-          Une question ? Besoin d'informations supplémentaires ? Contactez-nous
-          : <Link href='mailto:contact@cttbernex.ch'>contact@cttbernex.ch</Link>
+        <Typography sx={{ mb: 2 }}>
+          Une question ? Besoin d'informations supplémentaires ?
+          <br /> Générale :{' '}
+          <Link href='mailto:contact@cttbernex.ch'>contact@cttbernex.ch</Link>
+          <br /> Concernant les stages :{' '}
+          <Link href='mailto:stage@cttbernex.ch'>stage@cttbernex.ch</Link>
         </Typography>
         <Typography>
           Adresse :{' '}

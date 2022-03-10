@@ -12,6 +12,7 @@ import {
   MenuItem,
   InputLabel,
   Select,
+  Link,
 } from '@mui/material';
 
 import Navbar from '../../components/Navbar/Navbar';
@@ -29,7 +30,7 @@ const LateralBox = (props) => {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        gap: 4,
+        gap: { xs: 2, sm: 3, md: 4, lg: 4 },
       }}
     >
       {props.children}
@@ -73,7 +74,7 @@ function Stage(props) {
       sx: { flexGrow: 1 },
       ...register(options.id, {
         required: options.required === undefined ? true : options.required,
-        pattern: options.pattern || /^[A-Za-z]+$/i,
+        pattern: options.pattern || /[\s\S]*/,
       }),
       error: errors[options.id] !== undefined,
     };
@@ -83,25 +84,40 @@ function Stage(props) {
     <>
       <Navbar />
       <SectionDivider h={2} />
+
       <SectionContainer sx={{ color: 'primary' }}>
         <Typography variant='h2' sx={{ mb: 3 }}>
-          Inscription aux stages
+          Formulaire d'inscription
         </Typography>
+
         <form onSubmit={onSubmit}>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+            <TextField
+              {...basicFieldProps({
+                id: 'email',
+                label: 'Adresse email de contact',
+                required: true,
+                pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+              })}
+            />
             <LateralBox>
               <TextField
-                {...basicFieldProps({ id: 'lastName', label: 'Nom' })}
+                {...basicFieldProps({
+                  id: 'lastName',
+                  label: "Nom de l'inscrit",
+                })}
               />
               <TextField
-                {...basicFieldProps({ id: 'firstName', label: 'Prénom' })}
+                {...basicFieldProps({
+                  id: 'firstName',
+                  label: "Prénom de l'inscrit",
+                })}
               />
             </LateralBox>
             <TextField
               {...basicFieldProps({
                 id: 'adress',
                 label: 'Adresse',
-                pattern: /[\s\S]*/,
               })}
             />
             <TextField
@@ -122,6 +138,14 @@ function Stage(props) {
                 { value: 'other', text: 'Autre' },
               ]}
             />
+            <TextField
+              {...basicFieldProps({
+                id: 'healthIssues',
+                label: 'Problèmes médicaux à signaler (allergies, asthme…)',
+                required: false,
+              })}
+              multiline
+            />
             <Box>
               <Typography variant='h5' sx={{ mb: 1 }}>
                 Personne à prévenir en cas d'urgence
@@ -131,12 +155,14 @@ function Stage(props) {
                   {...basicFieldProps({
                     id: 'urgencyPersonlastName',
                     label: 'Nom',
+                    required: false,
                   })}
                 />
                 <TextField
                   {...basicFieldProps({
                     id: 'urgencyPersonFirstName',
                     label: 'Prénom',
+                    required: false,
                   })}
                 />
               </LateralBox>
@@ -145,7 +171,9 @@ function Stage(props) {
               <TextField
                 {...basicFieldProps({
                   id: 'urgencyPersonNumberA',
-                  label: 'Téléphone 1',
+                  label: 'Téléphone 1 (sans espaces)',
+                  required: false,
+
                   pattern:
                     /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
                 })}
@@ -161,29 +189,60 @@ function Stage(props) {
               />
             </LateralBox>
             <Box>
-              <Typography variant='h5' sx={{ mb: 1 }}>
-                Dates, horaires et repas
-              </Typography>
+              <Typography variant='h5'>Dates, horaires et repas</Typography>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: {
+                    xs: 'column',
+                    sm: 'column',
+                    md: 'row',
+                    lg: 'row',
+                  },
+                  justifyContent: 'space-between',
+                }}
+              >
+                <Typography variant='body1' sx={{ my: 1 }}>
+                  Matin (9h-12h) / Pause repas (12h-13h30) / Après-midi
+                  (13h30-16h30)
+                </Typography>
+                <Typography
+                  variant='body1'
+                  sx={{ color: 'primary.main', mb: 2 }}
+                >
+                  Attention à ne pas oublier de prévoir un pique-nique !
+                </Typography>
+              </Box>
               <SelectField
                 register={register}
                 id='dates'
                 label='Dates'
                 options={[
-                  { value: 'weekA', text: 'Semaine du 8 au 12 août' },
-                  { value: 'weekB', text: 'Semaine du 15 au 19 août' },
+                  {
+                    value: 'weekA',
+                    text: 'Stage performance du 8 au 12 août',
+                  },
+                  {
+                    value: 'weekB',
+                    text: 'Stage tous niveaux du 15 au 19 août',
+                  },
                 ]}
               />
             </Box>
-            <SelectField
-              register={register}
-              id='allWeek'
-              label='Participation toute la semaine'
-              options={[
-                { value: true, text: 'Oui' },
-                { value: false, text: 'Non' },
-              ]}
-            />
+
+            <Box>
+              <SelectField
+                register={register}
+                id='allWeek'
+                label='Participation toute la semaine'
+                options={[
+                  { value: 'true', text: 'Oui' },
+                  { value: 'false', text: 'Non' },
+                ]}
+              />
+            </Box>
             <WeekPresence disabled={weekPresenceChoserDisabled} />
+
             <Button
               variant='contained'
               type='submit'
@@ -196,6 +255,7 @@ function Stage(props) {
             </Button>
           </Box>
         </form>
+        <SectionDivider />
       </SectionContainer>
     </>
   );
