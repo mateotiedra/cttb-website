@@ -13,14 +13,17 @@ import {
   InputLabel,
   Select,
   Link,
+  Alert,
+  AlertTitle,
+  Box,
 } from '@mui/material';
+import { HashLink as RouterLink } from 'react-router-hash-link';
 
 import Navbar from '../../components/Navbar/Navbar';
 import SectionContainer from '../../components/SectionContainer/SectionContainer';
 import SectionDivider from '../../components/SectionDivider/SectionDivider';
 
 import StageLogic from './StageLogic';
-import { Box } from '@mui/system';
 import WeekPresence from '../../components/WeekPresence/WeekPresence';
 
 const LateralBox = (props) => {
@@ -40,7 +43,7 @@ const LateralBox = (props) => {
 
 const SelectField = (props) => {
   return (
-    <FormControl variant='filled' fullWidth>
+    <FormControl variant='filled' fullWidth disabled={props.disabled}>
       <InputLabel id={`select-${props.id}-label`}>{props.label}</InputLabel>
       <Select
         labelId={`select-${props.id}-label`}
@@ -64,8 +67,13 @@ const SelectField = (props) => {
 };
 
 function Stage(props) {
-  const { register, errors, onSubmit, weekPresenceChoserDisabled } =
-    StageLogic();
+  const {
+    register,
+    errors,
+    onSubmit,
+    weekPresenceChoserDisabled,
+    formDisabled,
+  } = StageLogic();
 
   const basicFieldProps = (options) => {
     return {
@@ -77,13 +85,51 @@ function Stage(props) {
         pattern: options.pattern || /[\s\S]*/,
       }),
       error: errors[options.id] !== undefined,
+      disabled: formDisabled,
     };
   };
+
+  const registrationClosedAlert = (
+    <SectionContainer sx={{ mb: 3 }}>
+      <Alert severity='error'>
+        <AlertTitle>Inscriptions actuellement fermées</AlertTitle>
+        <Typography variant='inherit'>
+          {
+            "Les inscriptions pour le stages ne sont pas ou plus ouvertes pour le moment. N'hésitez pas à "
+          }
+          <Link component={RouterLink} to={'/#contact'} sx={{ width: 'auto' }}>
+            nous contacter
+          </Link>
+          {' en cas de questions.'}
+        </Typography>
+      </Alert>
+    </SectionContainer>
+  );
 
   return (
     <>
       <Navbar />
-      <SectionDivider h={2} />
+      <SectionDivider h={formDisabled ? 1 : 2} />
+      {formDisabled && (
+        <SectionContainer sx={{ my: 3 }}>
+          <Alert severity='error'>
+            <AlertTitle>Inscriptions actuellement fermées</AlertTitle>
+            <Typography variant='inherit'>
+              {
+                "Les inscriptions pour le stages ne sont pas ou plus ouvertes pour le moment. N'hésitez pas à "
+              }
+              <Link
+                component={RouterLink}
+                to={'/#contact'}
+                sx={{ width: 'auto' }}
+              >
+                nous contacter
+              </Link>
+              {' en cas de questions.'}
+            </Typography>
+          </Alert>
+        </SectionContainer>
+      )}
 
       <SectionContainer sx={{ color: 'primary' }}>
         <Typography variant='h2' sx={{ mb: 3 }}>
@@ -137,6 +183,7 @@ function Stage(props) {
                 { value: 'female', text: 'Féminin' },
                 { value: 'other', text: 'Autre' },
               ]}
+              disabled={formDisabled}
             />
             <TextField
               {...basicFieldProps({
@@ -200,6 +247,7 @@ function Stage(props) {
                     lg: 'row',
                   },
                   justifyContent: 'space-between',
+                  gap: 3,
                 }}
               >
                 <Typography variant='body1' sx={{ my: 1 }}>
@@ -227,6 +275,7 @@ function Stage(props) {
                     text: 'Stage tous niveaux du 15 au 19 août',
                   },
                 ]}
+                disabled={formDisabled}
               />
             </Box>
 
@@ -239,9 +288,12 @@ function Stage(props) {
                   { value: 'true', text: 'Oui' },
                   { value: 'false', text: 'Non' },
                 ]}
+                disabled={formDisabled}
               />
             </Box>
-            <WeekPresence disabled={weekPresenceChoserDisabled} />
+            <WeekPresence
+              disabled={weekPresenceChoserDisabled || formDisabled}
+            />
 
             <Button
               variant='contained'
@@ -250,6 +302,7 @@ function Stage(props) {
               size='large'
               fullWidth
               sx={{ mt: 3 }}
+              disabled={formDisabled}
             >
               Envoyer
             </Button>
