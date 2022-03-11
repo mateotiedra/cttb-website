@@ -25,6 +25,7 @@ import SectionDivider from '../../components/SectionDivider/SectionDivider';
 
 import StageLogic from './StageLogic';
 import WeekPresence from '../../components/WeekPresence/WeekPresence';
+import Loading from '../Loading/Loading';
 
 const LateralBox = (props) => {
   return (
@@ -56,7 +57,11 @@ const SelectField = (props) => {
       >
         {props.options.map((option) => {
           return (
-            <MenuItem key={option.value} value={option.value}>
+            <MenuItem
+              key={option.value}
+              value={option.value}
+              disabled={option.disabled}
+            >
               {option.text}
             </MenuItem>
           );
@@ -71,6 +76,8 @@ function Stage(props) {
     register,
     errors,
     onSubmit,
+    loadingPage,
+    datesOptions,
     weekPresenceChoserDisabled,
     formDisabled,
   } = StageLogic();
@@ -106,30 +113,13 @@ function Stage(props) {
     </SectionContainer>
   );
 
+  if (loadingPage) return <Loading />;
+
   return (
     <>
       <Navbar />
       <SectionDivider h={formDisabled ? 1 : 2} />
-      {formDisabled && (
-        <SectionContainer sx={{ my: 3 }}>
-          <Alert severity='error'>
-            <AlertTitle>Inscriptions actuellement fermées</AlertTitle>
-            <Typography variant='inherit'>
-              {
-                "Les inscriptions pour le stages ne sont pas ou plus ouvertes pour le moment. N'hésitez pas à "
-              }
-              <Link
-                component={RouterLink}
-                to={'/#contact'}
-                sx={{ width: 'auto' }}
-              >
-                nous contacter
-              </Link>
-              {' en cas de questions.'}
-            </Typography>
-          </Alert>
-        </SectionContainer>
-      )}
+      {formDisabled && registrationClosedAlert}
 
       <SectionContainer sx={{ color: 'primary' }}>
         <Typography variant='h2' sx={{ mb: 3 }}>
@@ -265,16 +255,7 @@ function Stage(props) {
                 register={register}
                 id='dates'
                 label='Dates'
-                options={[
-                  {
-                    value: 'weekA',
-                    text: 'Stage performance du 8 au 12 août',
-                  },
-                  {
-                    value: 'weekB',
-                    text: 'Stage tous niveaux du 15 au 19 août',
-                  },
-                ]}
+                options={datesOptions}
                 disabled={formDisabled}
               />
             </Box>
