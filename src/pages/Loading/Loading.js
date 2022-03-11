@@ -38,6 +38,7 @@ function Loading() {
         <Typography
           variant='body1'
           color={displayMessage ? 'text.primary' : 'transparent'}
+          sx={{ transitionDuration: '500ms' }}
         >
           Le chargement peut prendre quelques secondes...
         </Typography>

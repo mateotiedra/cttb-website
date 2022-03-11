@@ -115,6 +115,7 @@ function Navbar(props) {
                 ':hover': {
                   borderBottomColor: 'primary.main',
                   textDecoration: 'none',
+                  color: 'primary.main',
                 },
                 display: { xs: 'none', md: 'none', lg: 'inline' },
               }}
