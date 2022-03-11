@@ -41,11 +41,16 @@ function Navbar(props) {
           {navLinksObj.map((linkObj) => {
             return (
               <ListItem button key={linkObj.text}>
-                <Link component={RouterLink} to={linkObj.to}>
-                  <ListItemText
-                    primary={linkObj.text}
-                    sx={{ textTransform: 'uppercase', color: 'text.primary' }}
-                  />
+                <Link
+                  component={RouterLink}
+                  to={linkObj.to}
+                  sx={{
+                    textTransform: 'uppercase',
+                    color: 'text.primary',
+                    '&:hover': { textDecoration: 'none' },
+                  }}
+                >
+                  <ListItemText primary={linkObj.text} />
                 </Link>
               </ListItem>
             );
@@ -109,6 +114,7 @@ function Navbar(props) {
                 border: '2px solid transparent',
                 ':hover': {
                   borderBottomColor: 'primary.main',
+                  textDecoration: 'none',
                 },
                 display: { xs: 'none', md: 'none', lg: 'inline' },
               }}

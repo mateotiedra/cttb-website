@@ -59,6 +59,9 @@ let theme = createTheme({
       styleOverrides: {
         root: {
           textDecoration: 'none',
+          '&:hover': {
+            textDecoration: 'underline',
+          },
         },
       },
     },
