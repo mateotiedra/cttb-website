@@ -18,10 +18,12 @@ const StageLogic = ({ history }) => {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm();
   const weekPresenceChoserDisabled = watch('allWeek', 'true') === 'true';
 
   const [datesOptions, setDatesOptions] = useState([]);
+  const [confirmationEmail, setConfirmationEmail] = useState('');
 
   const formDisabled =
     datesOptions.filter((dateOption) => !dateOption.disabled).length === 0;
@@ -75,7 +77,12 @@ const StageLogic = ({ history }) => {
           lastName: undefined,
         },
       })
-      .then(() => {})
+      .then(() => {
+        reset();
+        window.scrollTo(0, 0);
+        setConfirmationEmail(data.email);
+        setPageStatus('success');
+      })
       .catch((err) => {
         console.log(err.response);
       });
@@ -90,6 +97,7 @@ const StageLogic = ({ history }) => {
     datesOptions,
     weekPresenceChoserDisabled,
     formDisabled,
+    confirmationEmail,
   };
 };
 

@@ -80,6 +80,7 @@ function Stage(props) {
     datesOptions,
     weekPresenceChoserDisabled,
     formDisabled,
+    confirmationEmail,
   } = StageLogic(props);
 
   const basicFieldProps = (options) => {
@@ -97,13 +98,37 @@ function Stage(props) {
   };
 
   const registrationClosedAlert = (
-    <SectionContainer sx={{ mb: 3 }}>
-      <Alert severity='error'>
+    <SectionContainer sx={{ mt: { xs: 12, sm: 12, md: 16, lg: 16 }, mb: 5 }}>
+      <Alert severity='error' sx={{ p: 2 }}>
         <AlertTitle>Inscriptions actuellement fermées</AlertTitle>
         <Typography variant='inherit'>
           {
             "Les inscriptions pour le stages ne sont pas ou plus ouvertes pour le moment. N'hésitez pas à "
           }
+          <Link component={RouterLink} to={'/#contact'} sx={{ width: 'auto' }}>
+            nous contacter
+          </Link>
+          {' en cas de questions.'}
+        </Typography>
+      </Alert>
+    </SectionContainer>
+  );
+  const registrationSuccessAlert = (
+    <SectionContainer sx={{ mt: { xs: 12, sm: 12, md: 16, lg: 16 }, mb: 5 }}>
+      <Alert severity='success' sx={{ p: 2 }}>
+        <AlertTitle>Inscription enregistrée !</AlertTitle>
+        <Typography variant='inherit'>
+          {
+            "Votre inscription a bien été enregistré ! D'ici quelques minutes, un email de confirmation vous sera envoyé à l'adresse suivante : "
+          }
+          <Typography
+            variant='inherit'
+            sx={{ color: 'primary.main' }}
+            component={'span'}
+          >
+            {confirmationEmail}
+          </Typography>
+          {". N'hésitez pas à "}
           <Link component={RouterLink} to={'/#contact'} sx={{ width: 'auto' }}>
             nous contacter
           </Link>
@@ -118,9 +143,9 @@ function Stage(props) {
   return (
     <>
       <Navbar />
-      <SectionDivider h={formDisabled ? 1 : 2} />
       {formDisabled && registrationClosedAlert}
-
+      {pageStatus === 'success' && registrationSuccessAlert}
+      {!formDisabled && pageStatus !== 'success' && <SectionDivider h={2} />}
       <SectionContainer sx={{ color: 'primary' }}>
         <Typography variant='h2' sx={{ mb: 3 }}>
           Formulaire d'inscription
