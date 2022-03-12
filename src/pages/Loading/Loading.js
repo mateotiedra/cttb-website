@@ -8,11 +8,18 @@ function Loading() {
   const [displayMessage, setDisplayMessage] = useState(false);
 
   useEffect(() => {
-    if (seconds > 0) {
-      setTimeout(() => setSeconds(seconds - 1), 1000);
-    } else {
-      setDisplayMessage(true);
+    let isCancelled = false;
+
+    if (!isCancelled) {
+      if (seconds > 0) {
+        setTimeout(() => setSeconds(seconds - 1), 1000);
+      } else {
+        setDisplayMessage(true);
+      }
     }
+    return () => {
+      isCancelled = true;
+    };
   }, [setDisplayMessage, seconds]);
 
   return (
