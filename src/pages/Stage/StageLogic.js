@@ -19,20 +19,14 @@ const StageLogic = ({ history }) => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const onSubmit = (data) => console.log(data);
   const weekPresenceChoserDisabled = watch('allWeek', 'true') === 'true';
 
-  /* {
-      value: 'weekA',
-      text: 'Stage performance du 8 au 12 août',
-      disabled: false,
-    }, */
   const [datesOptions, setDatesOptions] = useState([]);
 
   const formDisabled =
     datesOptions.filter((dateOption) => !dateOption.disabled).length === 0;
 
-  var fetchedDatesOptions = [];
+  const fetchedDatesOptions = useRef([]);
 
   const fetchStagesData = (eventId) => (next) => {
     axios
@@ -42,7 +36,11 @@ const StageLogic = ({ history }) => {
         },
       })
       .then(({ data }) => {
-        fetchedDatesOptions.push(data);
+        fetchedDatesOptions.current.push({
+          value: data.id,
+          text: data.name,
+          disabled: !data.registrationOpened,
+        });
         next();
       })
       .catch((err) => {
@@ -55,9 +53,33 @@ const StageLogic = ({ history }) => {
   if (!hasFetchedData.current) {
     hasFetchedData.current = true;
     fetchStagesData('stage-perf-2022')(() => {
-      setDatesOptions(fetchedDatesOptions);
+      fetchStagesData('stage-all-2022')(() => {
+        setDatesOptions(fetchedDatesOptions.current);
+        setPageStatus('active');
+      });
     });
   }
+
+  const onSubmit = (data) => {
+    axios
+      .post(API_ORIGIN + '/event/register', {
+        eventId: data.dates,
+        email: data.email,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        registrationData: {
+          ...data,
+          dates: undefined,
+          email: undefined,
+          firstName: undefined,
+          lastName: undefined,
+        },
+      })
+      .then(() => {})
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
 
   return {
     register,

@@ -82,8 +82,6 @@ function Stage(props) {
     formDisabled,
   } = StageLogic(props);
 
-  console.log(datesOptions);
-
   const basicFieldProps = (options) => {
     return {
       label: options.label,
