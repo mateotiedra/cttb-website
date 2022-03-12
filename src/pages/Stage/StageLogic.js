@@ -1,7 +1,18 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-const StageLogic = (props) => {
+import axios from 'axios';
+
+import AppConfig from '../../config/AppConfig';
+import AxiosHelper from '../../helpers/AxiosHelper';
+
+const StageLogic = ({ history }) => {
+  const { API_ORIGIN } = AppConfig();
+  const { setInterceptors, getStatusCode } = AxiosHelper(axios, history);
+
+  const [pageStatus, setPageStatus] = useState('loading');
+  const hasFetchedData = useRef(false);
+
   const {
     watch,
     register,
@@ -9,32 +20,51 @@ const StageLogic = (props) => {
     handleSubmit,
   } = useForm();
   const onSubmit = (data) => console.log(data);
+  const weekPresenceChoserDisabled = watch('allWeek', 'true') === 'true';
 
-  const [loadingPage, setLoadingPage] = useState(true);
-
-  const datesOptions = [
-    {
+  /* {
       value: 'weekA',
       text: 'Stage performance du 8 au 12 août',
       disabled: false,
-    },
-    {
-      value: 'weekB',
-      text: 'Stage tous niveaux du 15 au 19 août',
-      datesOptions: false,
-    },
-  ];
+    }, */
+  const [datesOptions, setDatesOptions] = useState([]);
 
-  const weekPresenceChoserDisabled = watch('allWeek', 'true') === 'true';
+  const formDisabled =
+    datesOptions.filter((dateOption) => !dateOption.disabled).length === 0;
 
-  const formDisabled = false;
+  var fetchedDatesOptions = [];
+
+  const fetchStagesData = (eventId) => (next) => {
+    axios
+      .get(API_ORIGIN + '/event', {
+        params: {
+          id: eventId,
+        },
+      })
+      .then(({ data }) => {
+        fetchedDatesOptions.push(data);
+        next();
+      })
+      .catch((err) => {
+        if (getStatusCode(err) === 404) {
+          setPageStatus('notFound');
+        }
+      });
+  };
+
+  if (!hasFetchedData.current) {
+    hasFetchedData.current = true;
+    fetchStagesData('stage-perf-2022')(() => {
+      setDatesOptions(fetchedDatesOptions);
+    });
+  }
 
   return {
     register,
     errors,
     handleSubmit,
     onSubmit: handleSubmit(onSubmit),
-    loadingPage,
+    pageStatus,
     datesOptions,
     weekPresenceChoserDisabled,
     formDisabled,

@@ -76,11 +76,13 @@ function Stage(props) {
     register,
     errors,
     onSubmit,
-    loadingPage,
+    pageStatus,
     datesOptions,
     weekPresenceChoserDisabled,
     formDisabled,
-  } = StageLogic();
+  } = StageLogic(props);
+
+  console.log(datesOptions);
 
   const basicFieldProps = (options) => {
     return {
@@ -113,7 +115,7 @@ function Stage(props) {
     </SectionContainer>
   );
 
-  if (loadingPage) return <Loading />;
+  if (pageStatus === 'loading') return <Loading />;
 
   return (
     <>
