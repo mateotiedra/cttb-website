@@ -53,17 +53,15 @@ function Home() {
           les âges, des jeunes de 8 ans aux vétérans.
         </Typography>
       </SectionContainer>
-      <SectionDivider />
-
-      <SectionContainer id='horaires'>
+      <SectionDivider id='horaires' />
+      <SectionContainer>
         <Typography variant='h2' sx={{ mb: 3 }}>
           Horaires
         </Typography>
         <TrainingSchedule />
       </SectionContainer>
-      <SectionDivider />
-
-      <SectionContainer id='contact'>
+      <SectionDivider id='contact' />
+      <SectionContainer>
         <Typography variant='h2' sx={{ mb: 3 }}>
           Contact
         </Typography>

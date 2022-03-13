@@ -18,12 +18,11 @@ import {
   Box,
 } from '@mui/material';
 import { HashLink as RouterLink } from 'react-router-hash-link';
+import StageLogic from './StageLogic';
 
 import Navbar from '../../components/Navbar/Navbar';
 import SectionContainer from '../../components/SectionContainer/SectionContainer';
 import SectionDivider from '../../components/SectionDivider/SectionDivider';
-
-import StageLogic from './StageLogic';
 import WeekPresence from '../../components/WeekPresence/WeekPresence';
 import Loading from '../Loading/Loading';
 
