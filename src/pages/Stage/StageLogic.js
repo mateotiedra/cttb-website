@@ -26,7 +26,8 @@ const StageLogic = ({ history }) => {
   const [confirmationEmail, setConfirmationEmail] = useState('');
 
   const formDisabled =
-    datesOptions.filter((dateOption) => !dateOption.disabled).length === 0;
+    datesOptions.filter((dateOption) => !dateOption.disabled).length === 0 ||
+    pageStatus === 'notFound';
 
   const fetchedDatesOptions = useRef([]);
 

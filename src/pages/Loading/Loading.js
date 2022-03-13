@@ -12,7 +12,9 @@ function Loading() {
 
     if (!isCancelled) {
       if (seconds > 0) {
-        setTimeout(() => setSeconds(seconds - 1), 1000);
+        setTimeout(() => {
+          if (!isCancelled) setSeconds(seconds - 1);
+        }, 1000);
       } else {
         setDisplayMessage(true);
       }

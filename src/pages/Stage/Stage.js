@@ -42,7 +42,7 @@ const LateralBox = (props) => {
   );
 };
 
-const SelectField = (props) => {
+const SelectField = ({ options, ...props }) => {
   return (
     <FormControl variant='filled' fullWidth disabled={props.disabled}>
       <InputLabel id={`select-${props.id}-label`}>{props.label}</InputLabel>
@@ -53,9 +53,9 @@ const SelectField = (props) => {
         {...props.register(props.id, {
           required: props.required === undefined ? true : props.required,
         })}
-        defaultValue={props.options[0].value}
+        defaultValue={(options[0] && options[0].value) || ''}
       >
-        {props.options.map((option) => {
+        {options.map((option) => {
           return (
             <MenuItem
               key={option.value}
