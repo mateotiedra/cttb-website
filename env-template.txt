@@ -1,0 +1,5 @@
+# For prod
+REACT_APP_API_ORIGIN=https://cttbernex.ch
+
+# For dev
+REACT_APP_API_ORIGIN=http://localhost:8080
