@@ -25,6 +25,7 @@ import SectionContainer from '../../components/SectionContainer/SectionContainer
 import SectionDivider from '../../components/SectionDivider/SectionDivider';
 import WeekPresence from '../../components/WeekPresence/WeekPresence';
 import Loading from '../Loading/Loading';
+import SelectField from '../../components/SelectField/SelectField';
 
 const LateralBox = (props) => {
   return (
@@ -38,35 +39,6 @@ const LateralBox = (props) => {
     >
       {props.children}
     </Box>
-  );
-};
-
-const SelectField = ({ options, ...props }) => {
-  return (
-    <FormControl variant='filled' fullWidth disabled={props.disabled}>
-      <InputLabel id={`select-${props.id}-label`}>{props.label}</InputLabel>
-      <Select
-        labelId={`select-${props.id}-label`}
-        id={`select-${props.id}`}
-        label={props.label}
-        {...props.register(props.id, {
-          required: props.required === undefined ? true : props.required,
-        })}
-        defaultValue={(options[0] && options[0].value) || ''}
-      >
-        {options.map((option) => {
-          return (
-            <MenuItem
-              key={option.value}
-              value={option.value}
-              disabled={option.disabled}
-            >
-              {option.text}
-            </MenuItem>
-          );
-        })}
-      </Select>
-    </FormControl>
   );
 };
 
@@ -147,7 +119,7 @@ function Stage(props) {
       {!formDisabled && pageStatus !== 'success' && <SectionDivider h={2} />}
       <SectionContainer sx={{ color: 'primary' }}>
         <Typography variant='h2' sx={{ mb: 3 }}>
-          Formulaire d'inscription
+          Formulaire d'inscription au stage
         </Typography>
 
         <form onSubmit={onSubmit}>
