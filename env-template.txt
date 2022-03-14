@@ -1,5 +1,5 @@
 # For prod
-REACT_APP_API_ORIGIN=https://cttbernex.ch
+REACT_APP_API_ORIGIN=https://cttbernex.herokuapp.com
 
 # For dev
 REACT_APP_API_ORIGIN=http://localhost:8080
