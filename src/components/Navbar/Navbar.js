@@ -2,7 +2,7 @@ import React from 'react';
 
 import NavbarLogic from './NavbarLogic';
 
-import ClubLogo from '../../assets/images/logo.png';
+import ClubLogo from '../../assets/images/logo.js';
 import {
   AppBar,
   IconButton,
@@ -40,18 +40,18 @@ function Navbar(props) {
         <List>
           {navLinksObj.map((linkObj) => {
             return (
-              <ListItem button key={linkObj.text}>
-                <Link
-                  component={RouterLink}
-                  to={linkObj.to}
-                  sx={{
-                    textTransform: 'uppercase',
-                    color: 'text.primary',
-                    '&:hover': { textDecoration: 'none' },
-                  }}
-                >
-                  <ListItemText primary={linkObj.text} />
-                </Link>
+              <ListItem
+                button
+                key={linkObj.text}
+                component={RouterLink}
+                to={linkObj.to}
+                sx={{
+                  textTransform: 'uppercase',
+                  color: 'text.primary',
+                  '&:hover': { textDecoration: 'none' },
+                }}
+              >
+                <ListItemText primary={linkObj.text} />
               </ListItem>
             );
           })}
@@ -85,7 +85,9 @@ function Navbar(props) {
           component={RouterLink}
           to='/'
         >
-          <img src={ClubLogo} alt='Logo' />
+          <Box sx={{ height: '55px', width: '55px' }}>
+            <ClubLogo />
+          </Box>
           <Typography
             variant='h4'
             sx={{
