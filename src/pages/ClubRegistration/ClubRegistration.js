@@ -3,7 +3,6 @@ import React from 'react';
 import {
   Button,
   Divider,
-  Fab,
   Link,
   List,
   ListItem,
@@ -16,12 +15,9 @@ import SectionContainer from '../../components/SectionContainer/SectionContainer
 import SectionDivider from '../../components/SectionDivider/SectionDivider';
 import { HashLink as RouterLink } from 'react-router-hash-link';
 
-import ClubRegistrationLogic from './ClubRegistrationLogic';
 import DuesTables from '../../components/DuesTables/DuesTables';
 
 function ClubRegistration(props) {
-  const {} = ClubRegistrationLogic();
-
   const FreeLessonsSection = (
     <SectionContainer>
       <Typography variant='h2' sx={{ mb: 1 }}>

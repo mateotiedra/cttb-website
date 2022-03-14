@@ -1,5 +1,3 @@
-import React from 'react';
-
 const DuesTablesLogic = (props) => {
   const duesTablesObj = [
     {

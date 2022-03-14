@@ -8,7 +8,7 @@ import AxiosHelper from '../../helpers/AxiosHelper';
 
 const StageLogic = ({ history }) => {
   const { API_ORIGIN } = AppConfig();
-  const { setInterceptors, getStatusCode } = AxiosHelper(axios, history);
+  const { getStatusCode } = AxiosHelper(axios, history);
 
   const [pageStatus, setPageStatus] = useState('loading');
   const hasFetchedData = useRef(false);

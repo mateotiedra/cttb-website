@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 const WeekScheduleLogic = (props) => {
   const ETT = 'École de tennis de table (moins de 13 ans)';
   const selection = 'Cours perfectionnement (sur sélection)';
