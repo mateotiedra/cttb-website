@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const WeekPresenceLogic = (props) => {
+const WeekPresenceLogic = ({ onChange }) => {
   const [weekPresenceValues, setWeekPresenceValues] = useState([
     { title: 'Lundi', presence: [false, false] },
     { title: 'Mardi', presence: [false, false] },
@@ -17,6 +17,7 @@ const WeekPresenceLogic = (props) => {
     newDayValues[demiDay] = event.target.checked;
     newWeekPresenceValues[dayIndex].presence = newDayValues;
     setWeekPresenceValues([...newWeekPresenceValues]);
+    onChange([...newWeekPresenceValues]);
   };
 
   const toggleAccordion = () => {

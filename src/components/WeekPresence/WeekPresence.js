@@ -12,9 +12,9 @@ import { FiChevronDown } from 'react-icons/fi';
 
 import WeekPresenceLogic from './WeekPresenceLogic';
 
-function WeekPresence(props) {
+function WeekPresence({ onChange, ...props }) {
   const { weekPresenceValues, handleChange, accordionOpened, toggleAccordion } =
-    WeekPresenceLogic();
+    WeekPresenceLogic({ onChange });
 
   const children = (dayIndex) => {
     const dayName = weekPresenceValues[dayIndex].title;

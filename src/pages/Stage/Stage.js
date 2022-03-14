@@ -52,6 +52,7 @@ function Stage(props) {
     weekPresenceChoserDisabled,
     formDisabled,
     confirmationEmail,
+    onWeekPresenceChange,
   } = StageLogic(props);
 
   const basicFieldProps = (options) => {
@@ -270,6 +271,7 @@ function Stage(props) {
             </Box>
             <WeekPresence
               disabled={weekPresenceChoserDisabled || formDisabled}
+              onChange={onWeekPresenceChange}
             />
 
             <Button

@@ -20,7 +20,32 @@ const StageLogic = ({ history }) => {
     handleSubmit,
     reset,
   } = useForm();
-  const weekPresenceChoserDisabled = watch('allWeek', 'true') === 'true';
+  const weekPresenceChoserDisabled = watch('allWeek', 'true')
+    ? watch('allWeek', 'true') === 'true'
+    : true;
+
+  // Formated presence values
+  const presenceValues = useRef([]);
+  const halfDayNbr = useRef(10);
+
+  const onWeekPresenceChange = (newWeekPresenceValues) => {
+    var newWeekPresenceFormated = '';
+    var newHalfDayNbr = 0;
+    for (const day of newWeekPresenceValues) {
+      if (day.presence[0] && day.presence[1]) {
+        newWeekPresenceFormated += day.title + ', ';
+        newHalfDayNbr += 2;
+      } else if (day.presence[0]) {
+        newWeekPresenceFormated += day.title + ' matin, ';
+        newHalfDayNbr += 1;
+      } else if (day.presence[1]) {
+        newWeekPresenceFormated += day.title + ' après-midi, ';
+        newHalfDayNbr += 1;
+      }
+    }
+    presenceValues.current = newWeekPresenceFormated;
+    halfDayNbr.current = newHalfDayNbr;
+  };
 
   const [datesOptions, setDatesOptions] = useState([]);
   const [confirmationEmail, setConfirmationEmail] = useState('');
@@ -76,6 +101,8 @@ const StageLogic = ({ history }) => {
           email: undefined,
           firstName: undefined,
           lastName: undefined,
+          halfDayNbr: halfDayNbr.current,
+          presenceValues: presenceValues.current,
         },
       })
       .then(() => {
@@ -99,6 +126,7 @@ const StageLogic = ({ history }) => {
     weekPresenceChoserDisabled,
     formDisabled,
     confirmationEmail,
+    onWeekPresenceChange,
   };
 };
 
