@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Stage from './pages/Stage/Stage';
 import ClubRegistration from './pages/ClubRegistration/ClubRegistration';
+import ClubRegistrationForm from './pages/ClubRegistrationForm/ClubRegistrationForm';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path='/' default element={<Home />} />
         <Route path='/stages' element={<Stage />} />
         <Route path='/adhesion' element={<ClubRegistration />} />
+        <Route path='/adhesion/formulaire' element={<ClubRegistrationForm />} />
       </Routes>
     </Router>
   );
