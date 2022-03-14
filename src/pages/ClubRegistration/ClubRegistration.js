@@ -22,7 +22,7 @@ import DuesTables from '../../components/DuesTables/DuesTables';
 function ClubRegistration(props) {
   const {} = ClubRegistrationLogic();
 
-  const freeLessonsSection = (
+  const FreeLessonsSection = (
     <SectionContainer>
       <Typography variant='h2' sx={{ mb: 1 }}>
         Cours d'essais
@@ -35,7 +35,7 @@ function ClubRegistration(props) {
     </SectionContainer>
   );
 
-  const duesSection = (
+  const DuesSection = (
     <SectionContainer>
       <Typography variant='h2'>Cotisations</Typography>
       <Typography variant='h5' sx={{ mb: 1 }}>
@@ -45,7 +45,7 @@ function ClubRegistration(props) {
     </SectionContainer>
   );
 
-  const paymentsSection = (
+  const PaymentsSection = (
     <SectionContainer>
       <Typography variant='h2' sx={{ mb: 1 }}>
         Paiement
@@ -91,7 +91,7 @@ function ClubRegistration(props) {
       <Navbar />
       <SectionDivider h={2} />
       <SectionContainer>
-        <Typography variant='h1' sx={{ mb: 2 }}>
+        <Typography variant='h2' sx={{ mb: 1 }}>
           Adhérer au club
         </Typography>
         <Typography variant='body1'>
@@ -107,11 +107,11 @@ function ClubRegistration(props) {
         </Typography>
       </SectionContainer>
       <SectionDivider />
-      {freeLessonsSection}
+      {FreeLessonsSection}
       <SectionDivider id='dues' />
-      {duesSection}
+      {DuesSection}
       <SectionDivider />
-      {paymentsSection}
+      {PaymentsSection}
       <SectionDivider />
       <Button
         variant='contained'
