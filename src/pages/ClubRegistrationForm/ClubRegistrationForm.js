@@ -18,6 +18,7 @@ import {
   Box,
   Divider,
 } from '@mui/material';
+import LoadingButton from '@mui/lab/LoadingButton';
 import { HashLink as RouterLink } from 'react-router-hash-link';
 import ClubRegistrationFormLogic from './ClubRegistrationFormLogic';
 
@@ -305,7 +306,7 @@ function ClubRegistrationForm(props) {
               })}
               multiline
             />
-            <Button
+            <LoadingButton
               variant='contained'
               type='submit'
               disableElevation
@@ -313,9 +314,10 @@ function ClubRegistrationForm(props) {
               fullWidth
               sx={{ mt: 3 }}
               disabled={formDisabled}
+              loading={pageStatus === 'sending'}
             >
               Envoyer
-            </Button>
+            </LoadingButton>
           </Box>
         </form>
         <SectionDivider />

@@ -8,19 +8,17 @@ import AxiosHelper from '../../helpers/AxiosHelper';
 
 const ClubRegistrationFormLogic = ({ history }) => {
   const { API_ORIGIN } = AppConfig();
-  const { setInterceptors, getStatusCode } = AxiosHelper(axios, history);
+  const { getStatusCode } = AxiosHelper(axios, history);
 
   const [pageStatus, setPageStatus] = useState('loading');
   const hasFetchedData = useRef(false);
 
   const {
-    watch,
     register,
     formState: { errors },
     handleSubmit,
     reset,
   } = useForm();
-  const weekPresenceChoserDisabled = watch('allWeek', 'true') === 'true';
 
   const [confirmationEmail, setConfirmationEmail] = useState('');
 
@@ -45,6 +43,7 @@ const ClubRegistrationFormLogic = ({ history }) => {
   }
 
   const onSubmit = (data) => {
+    setPageStatus('sending');
     axios
       .post(API_ORIGIN + '/event/register', {
         eventId: 'club',

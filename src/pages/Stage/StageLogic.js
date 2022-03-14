@@ -89,6 +89,7 @@ const StageLogic = ({ history }) => {
   }
 
   const onSubmit = (data) => {
+    setPageStatus('sending');
     axios
       .post(API_ORIGIN + '/event/register', {
         eventId: data.dates,
