@@ -47,8 +47,8 @@ function Home() {
           Situé dans l'école Robert-Hainard, notre club compte près de 70
           membres pratiquants le tennis de table aussi bien en compétition
           officielle qu'en loisir. L'équipe de moniteurs diplômés de la
-          Fédération Suisse de Tennis de Table (www.swisstabletennis.ch) et J+S
-          (www.jeunesseetsport.ch) anime la structure d'entraînements accessible
+          Fédération Suisse de tennis de table (www.swisstabletennis.ch) et J+S
+          (www.jeunesseetsport.ch) anime la structure d'entraînement accessible
           à tous les niveaux, du débutant total au joueur licencié, et à tous
           les âges, des jeunes de 8 ans aux vétérans.
         </Typography>
