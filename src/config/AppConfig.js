@@ -1,8 +1,8 @@
 const AppConfig = () => {
   const API_ORIGIN =
-    process.env.REACT_APP_PRODUCTION === 'true'
-      ? 'https://cttbernex.herokuapp.com'
-      : 'http://localhost:8080';
+    process.env.NODE_ENV === 'development'
+      ? process.env.REACT_APP_API_URL_DEVELOPMENT
+      : process.env.REACT_APP_API_URL_PRODUCTION;
 
   return { API_ORIGIN: API_ORIGIN };
 };
