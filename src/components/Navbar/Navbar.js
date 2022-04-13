@@ -81,6 +81,9 @@ function Navbar(props) {
             height: '70px',
             ml: 2,
             mr: 'auto',
+            '&:hover': {
+              textDecoration: 'none',
+            },
           }}
           component={RouterLink}
           to='/'
