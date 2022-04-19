@@ -118,9 +118,9 @@ function Navbar(props) {
                 transitionDuration: '500ms',
                 border: '2px solid transparent',
                 ':hover': {
-                  borderBottomColor: 'primary.main',
+                  borderBottomColor: !linkObj.button && 'primary.main',
                   textDecoration: 'none',
-                  color: 'primary.main',
+                  color: !linkObj.button && 'primary.main',
                 },
                 display: { xs: 'none', md: 'none', lg: 'inline' },
               }}
