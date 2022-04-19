@@ -1,5 +1,5 @@
-const AxiosConfig = (axios, history) => {
-  const setInterceptors = () => {
+const AxiosConfig = (axios) => {
+  /* const setInterceptors = () => {
     axios.interceptors.response.use(
       function (response) {
         // Any status code that lie within the range of 2xx cause this function to trigger
@@ -18,7 +18,7 @@ const AxiosConfig = (axios, history) => {
         }
       }
     );
-  };
+  }; */
 
   const errorCodeEquals = (err, statusCode) => {
     return (
@@ -34,7 +34,7 @@ const AxiosConfig = (axios, history) => {
     return NaN;
   };
 
-  return { setInterceptors, errorCodeEquals, getStatusCode };
+  return { /* setInterceptors ,*/ errorCodeEquals, getStatusCode };
 };
 
 export default AxiosConfig;

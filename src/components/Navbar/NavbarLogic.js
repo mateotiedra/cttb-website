@@ -7,7 +7,7 @@ const NavbarLogic = (props) => {
     { text: 'Adhésion', to: '/adhesion' },
     //{ text: 'Tournoi', to: '/tournoi' },
     { text: 'Contact', to: '/#contact' },
-    { text: 'Espace membre', to: '/espace-membre', button: true },
+    { text: 'Espace membre', to: '/membre', button: true },
   ];
   const [drawerOpened, setDrawerOpened] = useState(false);
 
