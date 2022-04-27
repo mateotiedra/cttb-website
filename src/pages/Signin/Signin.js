@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import SignInLogic from './SignInLogic';
+import FormTextField from '../../components/FormTextField/FormTextField';
 
 function Copyright(props) {
   return (
@@ -31,7 +32,16 @@ export default function SignIn() {
   const { register, errors, onSubmit, pageStatus } = SignInLogic();
 
   return (
-    <Container component='main' maxWidth='xs'>
+    <Container
+      component='main'
+      maxWidth='xs'
+      sx={{
+        height: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+      }}
+    >
       <Box
         sx={{
           marginTop: 8,
@@ -42,39 +52,29 @@ export default function SignIn() {
       >
         <Avatar sx={{ m: 1 }}></Avatar>
         <Typography component='h1' variant='h5'>
-          Sign in
+          Connexion
         </Typography>
         <Box component='form' onSubmit={onSubmit} noValidate sx={{ mt: 1 }}>
-          <TextField
-            margin='normal'
+          <FormTextField
             required
-            fullWidth
             id='email'
             label='Adresse email'
-            name='email'
             autoComplete='email'
             autoFocus
-            variant='filled'
-            error={errors['email'] !== undefined}
-            {...register('email', {
+            errors={errors}
+            registration={register('email', {
               required: true,
               pattern: /^[\w]+@([\w-]+\.)+[\w-]{2,4}$/g,
             })}
           />
-          <TextField
-            margin='normal'
+          <FormTextField
             required
-            fullWidth
-            name='password'
-            label='Mot de passe'
-            type='password'
             id='password'
+            label='Mot de passe'
             autoComplete='current-password'
-            variant='filled'
-            error={errors['password'] !== undefined}
-            {...register('password', {
+            errors={errors}
+            registration={register('password', {
               required: true,
-              pattern: /[\s\S]*/,
             })}
           />
           <LoadingButton
