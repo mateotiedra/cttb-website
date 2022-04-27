@@ -6,7 +6,7 @@ import Stage from './pages/Stage/Stage';
 import ClubRegistration from './pages/ClubRegistration/ClubRegistration';
 import ClubRegistrationForm from './pages/ClubRegistrationForm/ClubRegistrationForm';
 import MemberSpace from './pages/MemberSpace/MemberSpace';
-import Signin from './pages/Signin/Signin';
+import SignIn from './pages/SignIn/SignIn';
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         <Route path='/adhesion' element={<ClubRegistration />} />
         <Route path='/adhesion/formulaire' element={<ClubRegistrationForm />} />
         <Route path='/membre' element={<MemberSpace />} />
-        <Route path='/membre/connexion' element={<Signin />} />
+        <Route path='/membre/connexion' element={<SignIn />} />
       </Routes>
     </Router>
   );

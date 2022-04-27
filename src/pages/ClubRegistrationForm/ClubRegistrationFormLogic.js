@@ -72,7 +72,6 @@ const ClubRegistrationFormLogic = ({ history }) => {
   return {
     register,
     errors,
-    handleSubmit,
     onSubmit: handleSubmit(onSubmit),
     pageStatus,
     formDisabled,
