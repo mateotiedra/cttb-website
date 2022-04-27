@@ -3,15 +3,7 @@ import { useState } from 'react';
 import PageLogicHelper from '../../helpers/PageLogicHelper';
 
 const MemberSpaceLogic = () => {
-  const {
-    API_ORIGIN,
-    axios,
-    pageStatus,
-    setPageStatus,
-    getStatusCode,
-    navigate,
-    useLoadPage,
-  } = PageLogicHelper();
+  const { pageStatus, setPageStatus, useLoadPage } = PageLogicHelper();
 
   const [userData, setUserData] = useState();
 

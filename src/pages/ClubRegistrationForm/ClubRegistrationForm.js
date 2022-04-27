@@ -1,25 +1,7 @@
 /* eslint-disable */
 import React from 'react';
-import {
-  TextField,
-  Typography,
-  Button,
-  FormControl,
-  FormLabel,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
-  MenuItem,
-  InputLabel,
-  Select,
-  Link,
-  Alert,
-  AlertTitle,
-  Box,
-  Divider,
-} from '@mui/material';
+import { TextField, Typography, Box, Divider } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
-import { HashLink as RouterLink } from 'react-router-hash-link';
 import ClubRegistrationFormLogic from './ClubRegistrationFormLogic';
 
 import Navbar from '../../components/Navbar/Navbar';

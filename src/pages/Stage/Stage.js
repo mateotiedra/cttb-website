@@ -2,7 +2,6 @@
 import React from 'react';
 import { TextField, Typography, Box } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
-import { HashLink as RouterLink } from 'react-router-hash-link';
 import StageLogic from './StageLogic';
 
 import Navbar from '../../components/Navbar/Navbar';
