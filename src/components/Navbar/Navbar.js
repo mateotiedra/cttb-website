@@ -16,8 +16,9 @@ import {
 import { FiMenu, FiX } from 'react-icons/fi';
 import { Box } from '@mui/system';
 import { HashLink as RouterLink } from 'react-router-hash-link';
+import SectionDivider from '../SectionDivider/SectionDivider';
 
-function Navbar({ admin }) {
+function Navbar({ admin, coverPage }) {
   const { navLinksObj, drawerOpened, toggleDrawer } = NavbarLogic(admin);
 
   const drawer = (
@@ -141,6 +142,7 @@ function Navbar({ admin }) {
         </IconButton>
       </AppBar>
       {drawer}
+      {!coverPage && <SectionDivider />}
     </>
   );
 }

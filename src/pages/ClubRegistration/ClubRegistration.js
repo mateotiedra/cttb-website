@@ -10,12 +10,13 @@ import {
   Paper,
   Typography,
 } from '@mui/material';
+import { HashLink as RouterLink } from 'react-router-hash-link';
+
 import Navbar from '../../components/Navbar/Navbar';
 import SectionContainer from '../../components/SectionContainer/SectionContainer';
 import SectionDivider from '../../components/SectionDivider/SectionDivider';
-import { HashLink as RouterLink } from 'react-router-hash-link';
-
 import DuesTables from '../../components/DuesTables/DuesTables';
+import Footer from '../../components/Footer/Footer';
 
 function ClubRegistration(props) {
   const FreeLessonsSection = (
@@ -85,7 +86,7 @@ function ClubRegistration(props) {
   return (
     <>
       <Navbar />
-      <SectionDivider h={2} />
+      <SectionDivider />
       <SectionContainer>
         <Typography variant='h2' sx={{ mb: 1 }}>
           Adhérer au club
@@ -126,6 +127,7 @@ function ClubRegistration(props) {
       >
         Devenir membre
       </Button>
+      <Footer />
     </>
   );
 }

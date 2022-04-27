@@ -1,22 +1,6 @@
 /* eslint-disable */
 import React from 'react';
-import {
-  TextField,
-  Typography,
-  Button,
-  FormControl,
-  FormLabel,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
-  MenuItem,
-  InputLabel,
-  Select,
-  Link,
-  Alert,
-  AlertTitle,
-  Box,
-} from '@mui/material';
+import { TextField, Typography, Box } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { HashLink as RouterLink } from 'react-router-hash-link';
 import StageLogic from './StageLogic';
@@ -27,8 +11,11 @@ import SectionDivider from '../../components/SectionDivider/SectionDivider';
 import WeekPresence from '../../components/WeekPresence/WeekPresence';
 import Loading from '../Loading/Loading';
 import SelectField from '../../components/SelectField/SelectField';
+import RegistrationSuccessAlert from '../../components/RegistrationSuccessAlert/RegistrationSuccessAlert';
+import RegistrationClosedAlert from '../../components/RegistrationClosedAlert/RegistrationClosedAlert';
+import Footer from '../../components/Footer/Footer';
 
-const LateralBox = (props) => {
+const LateralBox = ({ children }) => {
   return (
     <Box
       sx={{
@@ -38,7 +25,7 @@ const LateralBox = (props) => {
         gap: { xs: 2, sm: 3, md: 4, lg: 4 },
       }}
     >
-      {props.children}
+      {children}
     </Box>
   );
 };
@@ -70,47 +57,6 @@ function Stage(props) {
       disabled: formDisabled,
     };
   };
-
-  const RegistrationClosedAlert = (
-    <SectionContainer sx={{ mt: { xs: 12, sm: 12, md: 16, lg: 16 }, mb: 5 }}>
-      <Alert severity='error' sx={{ p: 2 }}>
-        <AlertTitle>Inscriptions actuellement fermées</AlertTitle>
-        <Typography variant='inherit'>
-          {
-            "Les inscriptions pour le stages ne sont pas ou plus ouvertes pour le moment. N'hésitez pas à "
-          }
-          <Link component={RouterLink} to={'/#contact'} sx={{ width: 'auto' }}>
-            nous contacter
-          </Link>
-          {' en cas de questions.'}
-        </Typography>
-      </Alert>
-    </SectionContainer>
-  );
-  const RegistrationSuccessAlert = (
-    <SectionContainer sx={{ mt: { xs: 12, sm: 12, md: 16, lg: 16 }, mb: 5 }}>
-      <Alert severity='success' sx={{ p: 2 }}>
-        <AlertTitle>Inscription enregistrée !</AlertTitle>
-        <Typography variant='inherit'>
-          {
-            "Votre inscription a bien été enregistré ! D'ici quelques minutes, un email de confirmation vous sera envoyé à l'adresse suivante : "
-          }
-          <Typography
-            variant='inherit'
-            sx={{ color: 'primary.main' }}
-            component={'span'}
-          >
-            {confirmationEmail}
-          </Typography>
-          {". N'hésitez pas à "}
-          <Link component={RouterLink} to={'/#contact'} sx={{ width: 'auto' }}>
-            nous contacter
-          </Link>
-          {' en cas de questions.'}
-        </Typography>
-      </Alert>
-    </SectionContainer>
-  );
 
   const RegistrantSection = (
     <>
@@ -275,9 +221,11 @@ function Stage(props) {
   return (
     <>
       <Navbar />
-      {formDisabled && RegistrationClosedAlert}
-      {pageStatus === 'success' && RegistrationSuccessAlert}
-      {!formDisabled && pageStatus !== 'success' && <SectionDivider h={2} />}
+      {formDisabled && <RegistrationClosedAlert eventName={'les stages'} />}
+      {pageStatus === 'success' && (
+        <RegistrationSuccessAlert confirmationEmail={confirmationEmail} />
+      )}
+      <SectionDivider />
       <SectionContainer sx={{ color: 'primary' }}>
         <Typography variant='h2' sx={{ mb: 3 }}>
           Formulaire d'inscription au stage
@@ -304,6 +252,7 @@ function Stage(props) {
         </form>
         <SectionDivider />
       </SectionContainer>
+      <Footer />
     </>
   );
 }

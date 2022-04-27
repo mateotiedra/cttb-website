@@ -7,6 +7,7 @@ import { Link, Typography } from '@mui/material';
 import SectionDivider from '../../components/SectionDivider/SectionDivider';
 import SectionContainer from '../../components/SectionContainer/SectionContainer';
 import TrainingSchedule from '../../components/TrainingSchedule/TrainingSchedule';
+import Footer from '../../components/Footer/Footer';
 
 function Home() {
   return (
@@ -81,6 +82,7 @@ function Home() {
         </Typography>
       </SectionContainer>
       <SectionDivider />
+      <Footer />
     </>
   );
 }

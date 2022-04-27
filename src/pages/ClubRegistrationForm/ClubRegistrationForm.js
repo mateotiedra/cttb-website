@@ -27,6 +27,9 @@ import SectionContainer from '../../components/SectionContainer/SectionContainer
 import SectionDivider from '../../components/SectionDivider/SectionDivider';
 import Loading from '../Loading/Loading';
 import SelectField from '../../components/SelectField/SelectField';
+import RegistrationClosedAlert from '../../components/RegistrationClosedAlert/RegistrationClosedAlert';
+import RegistrationSuccessAlert from '../../components/RegistrationSuccessAlert/RegistrationSuccessAlert';
+import Footer from '../../components/Footer/Footer';
 
 const LateralBox = (props) => {
   return (
@@ -67,48 +70,6 @@ function ClubRegistrationForm(props) {
       disabled: formDisabled,
     };
   };
-
-  const registrationClosedAlert = (
-    <SectionContainer sx={{ mt: { xs: 12, sm: 12, md: 16, lg: 16 }, mb: 5 }}>
-      <Alert severity='error' sx={{ p: 2 }}>
-        <AlertTitle>Inscriptions actuellement fermées</AlertTitle>
-        <Typography variant='inherit'>
-          {
-            "Les inscriptions pour le club ne sont pas ou plus ouvertes pour le moment. N'hésitez pas à "
-          }
-          <Link component={RouterLink} to={'/#contact'} sx={{ width: 'auto' }}>
-            nous contacter
-          </Link>
-          {' en cas de questions.'}
-        </Typography>
-      </Alert>
-    </SectionContainer>
-  );
-
-  const registrationSuccessAlert = (
-    <SectionContainer sx={{ mt: { xs: 12, sm: 12, md: 16, lg: 16 }, mb: 5 }}>
-      <Alert severity='success' sx={{ p: 2 }}>
-        <AlertTitle>Inscription enregistrée !</AlertTitle>
-        <Typography variant='inherit'>
-          {
-            "Votre inscription a bien été enregistré ! D'ici quelques minutes, un email de confirmation vous sera envoyé à l'adresse suivante : "
-          }
-          <Typography
-            variant='inherit'
-            sx={{ color: 'primary.main' }}
-            component={'span'}
-          >
-            {confirmationEmail}
-          </Typography>
-          {". N'hésitez pas à "}
-          <Link component={RouterLink} to={'/#contact'} sx={{ width: 'auto' }}>
-            nous contacter
-          </Link>
-          {' en cas de questions.'}
-        </Typography>
-      </Alert>
-    </SectionContainer>
-  );
 
   const phoneFieldProps = {
     label: 'Téléphone (sans espace)',
@@ -278,9 +239,11 @@ function ClubRegistrationForm(props) {
   return (
     <>
       <Navbar />
-      {formDisabled && registrationClosedAlert}
-      {pageStatus === 'success' && registrationSuccessAlert}
-      {!formDisabled && pageStatus !== 'success' && <SectionDivider h={2} />}
+      {formDisabled && <RegistrationClosedAlert eventName='le club' />}
+      {pageStatus === 'success' && (
+        <RegistrationSuccessAlert confirmationEmail={confirmationEmail} />
+      )}
+      <SectionDivider />
       <SectionContainer sx={{ color: 'primary' }}>
         <Typography variant='h2' sx={{ mb: 3 }}>
           Formulaire d'inscription au club
@@ -322,6 +285,7 @@ function ClubRegistrationForm(props) {
         </form>
         <SectionDivider />
       </SectionContainer>
+      <Footer />
     </>
   );
 }
