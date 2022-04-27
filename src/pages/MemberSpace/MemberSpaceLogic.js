@@ -40,7 +40,7 @@ const MemberSpaceLogic = () => {
   return {
     pageStatus,
     admin: userData && ['admin', 'mod'].includes(userData.role),
-    name: userData && userData.email.split('@')[0],
+    userName: userData && userData.email.split('@')[0],
   };
 };
 
