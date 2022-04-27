@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 
-import PageLogic from '../../helpers/PageLogic';
+import PageLogicHelper from '../../helpers/PageLogicHelper';
 
 const LoginLogic = (props) => {
   const {
@@ -11,7 +11,7 @@ const LoginLogic = (props) => {
     getStatusCode,
     navigate,
     useLoadPage,
-  } = PageLogic();
+  } = PageLogicHelper();
 
   const {
     register,

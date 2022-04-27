@@ -1,9 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
-import AppConfig from '../../config/AppConfig';
-import AxiosHelper from '../../helpers/AxiosHelper';
-import PageLogic from '../../helpers/PageLogic';
+import PageLogicHelper from '../../helpers/PageLogicHelper';
 
 const MemberSpaceLogic = () => {
   const {
@@ -14,28 +11,16 @@ const MemberSpaceLogic = () => {
     getStatusCode,
     navigate,
     useLoadPage,
-  } = PageLogic();
+  } = PageLogicHelper();
 
   const [userData, setUserData] = useState();
 
-  useLoadPage(() => {
-    axios
-      .get(API_ORIGIN + '/auth/u', {
-        headers: {
-          'x-access-token': localStorage.getItem('accessToken'),
-        },
-      })
-      .then(({ data }) => {
-        setUserData(data);
-        setPageStatus('active');
-      })
-      .catch((err) => {
-        if (getStatusCode(err) === 401) {
-          localStorage.removeItem('accessToken');
-          navigate('/membre/connexion', { replace: true });
-        }
-      });
-  });
+  useLoadPage(
+    () => {
+      setPageStatus('active');
+    },
+    { allowedRoles: ['user', 'mod', 'admin'], setUserData: setUserData }
+  );
 
   return {
     pageStatus,

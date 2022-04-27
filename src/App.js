@@ -7,6 +7,7 @@ import ClubRegistration from './pages/ClubRegistration/ClubRegistration';
 import ClubRegistrationForm from './pages/ClubRegistrationForm/ClubRegistrationForm';
 import MemberSpace from './pages/MemberSpace/MemberSpace';
 import Login from './pages/Login/Login';
+import MemberManager from './pages/MemberManager/MemberManager';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path='/adhesion/formulaire' element={<ClubRegistrationForm />} />
         <Route path='/membre' element={<MemberSpace />} />
         <Route path='/membre/connexion' element={<Login />} />
+        <Route path='/admin/membres' element={<MemberManager />} />
       </Routes>
     </Router>
   );
