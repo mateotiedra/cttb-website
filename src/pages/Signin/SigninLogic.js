@@ -21,7 +21,20 @@ const SignInLogic = (props) => {
   } = useForm();
 
   useLoadPage(() => {
-    console.log('load page');
+    axios
+      .get(API_ORIGIN + '/auth/u', {
+        headers: {
+          'x-access-token': localStorage.getItem('accessToken'),
+        },
+      })
+      .then(({}) => {
+        navigate('/membre', { replace: true });
+      })
+      .catch((err) => {
+        if (getStatusCode(err) === 401) {
+          localStorage.removeItem('accessToken');
+        }
+      });
   });
 
   const onSubmit = (data) => {
