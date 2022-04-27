@@ -7,7 +7,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import SignInLogic from './SignInLogic';
+import LoginLogic from './LoginLogic';
 import FormTextField from '../../components/FormTextField/FormTextField';
 
 function Copyright(props) {
@@ -28,8 +28,8 @@ function Copyright(props) {
   );
 }
 
-export default function SignIn() {
-  const { register, errors, onSubmit, pageStatus } = SignInLogic();
+export default function Login() {
+  const { register, errors, onSubmit, pageStatus } = LoginLogic();
 
   return (
     <Container

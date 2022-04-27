@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 
 import PageLogic from '../../helpers/PageLogic';
 
-const SignInLogic = (props) => {
+const LoginLogic = (props) => {
   const {
     API_ORIGIN,
     axios,
@@ -69,4 +69,4 @@ const SignInLogic = (props) => {
   };
 };
 
-export default SignInLogic;
+export default LoginLogic;
