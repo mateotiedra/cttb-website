@@ -17,8 +17,8 @@ import { FiMenu, FiX } from 'react-icons/fi';
 import { Box } from '@mui/system';
 import { HashLink as RouterLink } from 'react-router-hash-link';
 
-function Navbar(props) {
-  const { navLinksObj, drawerOpened, toggleDrawer } = NavbarLogic();
+function Navbar({ admin }) {
+  const { navLinksObj, drawerOpened, toggleDrawer } = NavbarLogic(admin);
 
   const drawer = (
     <SwipeableDrawer
