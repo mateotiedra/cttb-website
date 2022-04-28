@@ -34,7 +34,7 @@ const PageLogic = () => {
     }
 
     axios
-      .get(API_ORIGIN + '/auth/u', {
+      .get(API_ORIGIN + '/user/u', {
         headers: {
           'x-access-token': localStorage.getItem('accessToken'),
         },
