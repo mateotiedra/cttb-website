@@ -24,21 +24,25 @@ import SectionDivider from '../../components/SectionDivider/SectionDivider';
 import Footer from '../../components/Footer/Footer';
 import Loading from '../Loading/Loading';
 
-function MemberList({ userList, onChangeRole }) {
+function MemberList({ userList, onChangeRole, allowedToChange }) {
   return (
-    <Paper sx={{ width: '100%', bgcolor: 'background.paper', p: 4 }}>
+    <Paper sx={{ width: '100%', bgcolor: 'background.paper', px: 4, py: 3 }}>
       <List>
         {userList.map((user, id) => {
           return (
             <React.Fragment key={user.email}>
-              <ListItem>
+              <ListItem sx={{ my: 1 }}>
                 <ListItemAvatar>
                   <Avatar>
                     <FiUser />
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText primary={user.email} />
-                <FormControl variant='standard' sx={{ minWidth: 200 }}>
+                <FormControl
+                  variant='standard'
+                  sx={{ minWidth: 200 }}
+                  disabled={!allowedToChange}
+                >
                   <InputLabel id='role'>Role</InputLabel>
                   <Select
                     labelId='demo-simple-select-label'
@@ -65,9 +69,8 @@ function MemberList({ userList, onChangeRole }) {
 }
 
 function MemberManager() {
-  const { pageStatus, userList, onChangeRole } = MemberManagerLogic();
-
-  console.log(userList);
+  const { pageStatus, userList, onChangeRole, allowedToChangeRole } =
+    MemberManagerLogic();
 
   if (pageStatus === 'loading') return <Loading />;
 
@@ -76,8 +79,14 @@ function MemberManager() {
       <Navbar admin />
       <SectionDivider />
       <SectionContainer>
-        <Typography variant='h2'>Liste des membres</Typography>
-        <MemberList userList={userList} onChangeRole={onChangeRole} />
+        <Typography variant='h2' sx={{ mb: 2 }}>
+          Liste des membres
+        </Typography>
+        <MemberList
+          userList={userList}
+          onChangeRole={onChangeRole}
+          allowedToChange={allowedToChangeRole}
+        />
       </SectionContainer>
       <Footer />
     </>

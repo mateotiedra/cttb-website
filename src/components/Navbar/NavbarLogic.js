@@ -3,6 +3,7 @@ import { useState } from 'react';
 const NavbarLogic = (admin) => {
   const navLinksObj = admin
     ? [
+        { text: 'Espace membre', to: '/membre' },
         { text: 'Membres', to: '/admin/membres' },
         { text: 'Actualité', to: '/admin/actu' },
       ]
@@ -12,7 +13,7 @@ const NavbarLogic = (admin) => {
         { text: 'Adhésion', to: '/adhesion' },
         //{ text: 'Tournoi', to: '/tournoi' },
         { text: 'Contact', to: '/#contact' },
-        { text: 'Espace membre', to: '/membre', button: true },
+        { text: 'Espace membre', to: '/membre' },
       ];
   const [drawerOpened, setDrawerOpened] = useState(false);
 
