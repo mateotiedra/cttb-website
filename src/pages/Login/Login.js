@@ -6,8 +6,11 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import LoginLogic from './LoginLogic';
+
+import { FiUser } from 'react-icons/fi';
+
 import FormTextField from '../../components/FormTextField/FormTextField';
+import LoginLogic from './LoginLogic';
 
 function Copyright(props) {
   return (
@@ -49,7 +52,9 @@ export default function Login() {
           alignItems: 'center',
         }}
       >
-        <Avatar sx={{ m: 1 }}></Avatar>
+        <Avatar sx={{ m: 1 }}>
+          <FiUser />
+        </Avatar>
         <Typography component='h1' variant='h5'>
           Connexion
         </Typography>

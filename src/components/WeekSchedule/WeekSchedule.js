@@ -3,12 +3,11 @@ import {
   Box,
   List,
   ListItem,
-  ListItemIcon,
   ListItemText,
   Paper,
   Typography,
 } from '@mui/material';
-import { FiCornerDownRight } from 'react-icons/fi';
+
 import WeekScheduleLogic from './WeekScheduleLogic';
 
 function WeekSchedule(props) {
