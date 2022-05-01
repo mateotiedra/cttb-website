@@ -6,7 +6,7 @@ import Stage from './pages/Stage/Stage';
 import ClubRegistration from './pages/ClubRegistration/ClubRegistration';
 import ClubRegistrationForm from './pages/ClubRegistrationForm/ClubRegistrationForm';
 import MemberSpace from './pages/MemberSpace/MemberSpace';
-import Login from './pages/Login/Login';
+import Auth from './pages/Auth/Auth';
 import MemberManager from './pages/MemberManager/MemberManager';
 
 function App() {
@@ -18,7 +18,14 @@ function App() {
         <Route path='/adhesion' element={<ClubRegistration />} />
         <Route path='/adhesion/formulaire' element={<ClubRegistrationForm />} />
         <Route path='/membre' element={<MemberSpace />} />
-        <Route path='/membre/connexion' element={<Login />} />
+        <Route
+          path='/membre/connexion'
+          element={<Auth startingMode='login' />}
+        />
+        <Route
+          path='/membre/inscription'
+          element={<Auth startingMode='register' />}
+        />
         <Route path='/admin/membres' element={<MemberManager />} />
       </Routes>
     </Router>
