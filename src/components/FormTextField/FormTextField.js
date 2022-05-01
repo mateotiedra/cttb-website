@@ -9,6 +9,7 @@ const FormTextField = ({
   autoFocus,
   errors,
   registration,
+  type,
 }) => {
   return (
     <TextField
@@ -20,6 +21,7 @@ const FormTextField = ({
       name={id}
       autoComplete={autoComplete}
       autoFocus={autoFocus}
+      type={type}
       variant='filled'
       error={errors[id] !== undefined}
       helperText={errors[id] && errors[id].message}
