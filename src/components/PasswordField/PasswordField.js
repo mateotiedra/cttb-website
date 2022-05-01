@@ -60,23 +60,6 @@ const PasswordField = ({
       )}
     </FormControl>
   );
-  {
-    /* <TextField
-    type={showPassword ? 'text' : 'password'}
-    autoComplete={'password'}
-    margin='normal'
-    required={required}
-    fullWidth
-    id={id}
-    label={label}
-    name={id}
-    autoFocus={autoFocus}
-    variant='filled'
-    error={errors[id] !== undefined}
-    helperText={errors[id] && errors[id].message}
-    {...registration}
-  /> */
-  }
 };
 
 export default PasswordField;
