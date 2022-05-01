@@ -18,7 +18,7 @@ import { Box } from '@mui/system';
 import { HashLink as RouterLink } from 'react-router-hash-link';
 import SectionDivider from '../SectionDivider/SectionDivider';
 
-function Navbar({ admin, coverPage }) {
+function Navbar({ admin, coverPage, empty }) {
   const { navLinksObj, drawerOpened, toggleDrawer } = NavbarLogic(admin);
 
   const drawer = (
@@ -68,7 +68,7 @@ function Navbar({ admin, coverPage }) {
         sx={{
           display: 'flex',
           flexDirection: 'row',
-          justifyContent: 'end',
+          justifyContent: empty ? 'center' : 'end',
           alignItems: 'center',
           px: 2,
           backgroundColor: 'background.default',
@@ -81,7 +81,7 @@ function Navbar({ admin, coverPage }) {
             alignItems: 'center',
             height: '70px',
             ml: 2,
-            mr: 'auto',
+            mr: !empty && 'auto',
             '&:hover': {
               textDecoration: 'none',
             },
@@ -104,32 +104,33 @@ function Navbar({ admin, coverPage }) {
             CTT Bernex
           </Typography>
         </Link>
-        {navLinksObj.map((linkObj) => {
-          return (
-            <Link
-              key={linkObj.text}
-              component={RouterLink}
-              to={linkObj.to}
-              sx={{
-                mx: 2,
-                px: 1,
-                py: 2,
-                textTransform: 'uppercase',
-                color: 'text.primary',
-                transitionDuration: '500ms',
-                border: '2px solid transparent',
-                ':hover': {
-                  borderBottomColor: 'primary.main',
-                  textDecoration: 'none',
-                  color: 'primary.main',
-                },
-                display: { xs: 'none', md: 'none', lg: 'inline' },
-              }}
-            >
-              <Typography variant='h6'>{linkObj.text}</Typography>
-            </Link>
-          );
-        })}
+        {!empty &&
+          navLinksObj.map((linkObj) => {
+            return (
+              <Link
+                key={linkObj.text}
+                component={RouterLink}
+                to={linkObj.to}
+                sx={{
+                  mx: 2,
+                  px: 1,
+                  py: 2,
+                  textTransform: 'uppercase',
+                  color: 'text.primary',
+                  transitionDuration: '500ms',
+                  border: '2px solid transparent',
+                  ':hover': {
+                    borderBottomColor: 'primary.main',
+                    textDecoration: 'none',
+                    color: 'primary.main',
+                  },
+                  display: { xs: 'none', md: 'none', lg: 'inline' },
+                }}
+              >
+                <Typography variant='h6'>{linkObj.text}</Typography>
+              </Link>
+            );
+          })}
         <IconButton
           sx={{
             p: 2,
