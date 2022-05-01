@@ -8,6 +8,8 @@ const MemberManagerLogic = () => {
 
   const [userList, setUserList] = useState([]);
   const [userData, setUserData] = useState();
+  // The target of the dialog, the email of the user who'll be removed
+  const [deleteDialogEmail, setDeleteDialogEmail] = useState(undefined);
 
   useLoadPage(
     () => {
@@ -25,6 +27,11 @@ const MemberManagerLogic = () => {
     },
     { allowedRoles: ['mod', 'admin'], setUserData: setUserData }
   );
+
+  const handleCloseDeleteDialog = () => setDeleteDialogEmail(undefined);
+
+  const handleOpenDeleteDialog = (userEmail) => () =>
+    setDeleteDialogEmail(userEmail);
 
   const onChangeRole = (userEmail) => (event) => {
     axios
@@ -53,11 +60,33 @@ const MemberManagerLogic = () => {
       });
   };
 
+  const deleteUser = (userEmail) => () => {
+    handleCloseDeleteDialog();
+    axios
+      .delete(API_ORIGIN + '/user', {
+        data: { userEmail: userEmail },
+        headers: {
+          'x-access-token': localStorage.getItem('accessToken'),
+        },
+      })
+      .then(() => {
+        window.location.reload(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return {
     pageStatus,
     userList,
     onChangeRole,
     allowedToChangeRole: userData && userData.role === 'admin',
+    deleteDialogEmail,
+    deleteDialogOpen: deleteDialogEmail !== undefined,
+    deleteUser,
+    handleCloseDeleteDialog,
+    handleOpenDeleteDialog,
   };
 };
 
