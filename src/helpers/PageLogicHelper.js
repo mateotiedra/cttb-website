@@ -48,7 +48,7 @@ const PageLogic = () => {
         }
       })
       .catch((err) => {
-        if (getStatusCode(err) === 401) {
+        if (getStatusCode(err) === 401 || getStatusCode(err) === 403) {
           localStorage.removeItem('accessToken');
           navigate('/membre/connexion', { replace: true });
         }
