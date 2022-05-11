@@ -15,8 +15,8 @@ const PageLogic = () => {
   const hasFetchedData = useRef(false);
 
   const useLoadPage = (actionIn, options) => {
-    const { actionOut, allowedRoles, setUserData } = options || {};
     useEffect(() => {
+      const { actionOut, allowedRoles, setUserData } = options || {};
       if (!hasFetchedData.current) {
         hasFetchedData.current = true;
         if (allowedRoles) checkUserRole(allowedRoles, setUserData);
@@ -24,7 +24,7 @@ const PageLogic = () => {
       }
 
       if (actionOut) return actionOut;
-    }, [actionIn, checkUserRole]);
+    }, [actionIn, options]);
   };
 
   const checkUserRole = (allowedRoles, setUserData) => {

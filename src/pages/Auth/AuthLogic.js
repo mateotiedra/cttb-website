@@ -42,7 +42,7 @@ const AuthLogic = ({ startingMode }) => {
           'x-access-token': localStorage.getItem('accessToken'),
         },
       })
-      .then(({}) => {
+      .then(() => {
         navigate('/membre', { replace: true });
       })
       .catch((err) => {
