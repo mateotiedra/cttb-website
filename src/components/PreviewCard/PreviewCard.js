@@ -5,13 +5,11 @@ import { Divider, Link, Paper, Typography } from '@mui/material';
 function PreviewCard({ children, title, description, to }) {
   return (
     <Paper
-      backgroundColor='primary.default'
       sx={{
         display: 'flex',
         flexDirection: 'column',
         p: 4,
         flexGrow: 1,
-        bg: 'primary.default',
       }}
     >
       <Typography variant='h4'>{title}</Typography>

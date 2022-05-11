@@ -112,7 +112,6 @@ function ClubRegistration(props) {
       <SectionDivider />
       <Button
         variant='contained'
-        disableElevation
         size='large'
         sx={{
           margin: 0,
