@@ -3,20 +3,20 @@ import Navbar from '../../components/Navbar/Navbar';
 
 import { Box } from '@mui/system';
 import imgCarousel1 from '../../assets/images/home-carousel-1.jpeg';
-import { Link, Typography } from '@mui/material';
+import { Link, Paper, Typography } from '@mui/material';
 import SectionDivider from '../../components/SectionDivider/SectionDivider';
 import SectionContainer from '../../components/SectionContainer/SectionContainer';
 import TrainingSchedule from '../../components/TrainingSchedule/TrainingSchedule';
 import Footer from '../../components/Footer/Footer';
+import PreviewCard from '../../components/PreviewCard/PreviewCard';
 
-function Home() {
+function TitleSection() {
   return (
     <>
-      <Navbar />
       <Box
         sx={{
           width: '100%',
-          height: '65vh',
+          height: '70vh',
           backgroundImage: `url(${imgCarousel1})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
@@ -35,11 +35,68 @@ function Home() {
             opacity: 0.7,
           }}
         />
-        <SectionContainer sx={{ zIndex: 15 }}>
+        <SectionContainer sx={{ zIndex: 15, position: 'relative', top: -35 }}>
           <Typography variant='h1'>Club de Tennis de Table Bernex</Typography>
         </SectionContainer>
       </Box>
-      <SectionDivider />
+    </>
+  );
+}
+
+function NewsAndLinksSection() {
+  const usefulLinks = [
+    {
+      title: 'Fédération suisse de tennis de table (STT)',
+      href: 'https://swisstabletennis.ch/',
+    },
+    {
+      title: 'Association Genevoise de Tennis de Table (AGTT)',
+      href: 'https://www.agtt.ch/',
+    },
+    {
+      title: 'Pyngpong.info (incription aux tournois)',
+      href: 'https://pyngpong.info/',
+    },
+    {
+      title: 'Click-tt (résultats des championnats et classements)',
+      href: 'https://www.click-tt.ch/',
+    },
+    {
+      title: 'Fédération Internationale de Tennis de Table (ITTF)',
+      href: 'https://www.ittf.com/',
+    },
+  ];
+  return (
+    <>
+      <SectionContainer sx={{ position: 'relative', top: -85, zIndex: 30 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', sm: 'column', md: 'row' },
+            gap: 6,
+            px: 3,
+          }}
+        >
+          <PreviewCard title='Actualité' to='/actualite' />
+          <PreviewCard title='Liens utiles'>
+            {usefulLinks.map((usefulLink) => (
+              <Link
+                href={usefulLink.href}
+                sx={{ alignSelf: 'flex-start', py: 1 }}
+              >
+                {usefulLink.title}
+              </Link>
+            ))}
+          </PreviewCard>
+        </Box>
+      </SectionContainer>
+    </>
+  );
+}
+
+function WhoSection() {
+  return (
+    <>
       <SectionContainer>
         <Typography variant='h2' sx={{ mb: 3 }}>
           Qui sommes nous ?
@@ -54,6 +111,13 @@ function Home() {
           les âges, des jeunes de 8 ans aux vétérans.
         </Typography>
       </SectionContainer>
+    </>
+  );
+}
+
+function ScheduleSection() {
+  return (
+    <>
       <SectionDivider id='horaires' />
       <SectionContainer>
         <Typography variant='h2' sx={{ mb: 3 }}>
@@ -61,6 +125,13 @@ function Home() {
         </Typography>
         <TrainingSchedule />
       </SectionContainer>
+    </>
+  );
+}
+
+function ContactSection() {
+  return (
+    <>
       <SectionDivider id='contact' />
       <SectionContainer>
         <Typography variant='h2' sx={{ mb: 3 }}>
@@ -81,6 +152,19 @@ function Home() {
           </Link>
         </Typography>
       </SectionContainer>
+    </>
+  );
+}
+
+function Home() {
+  return (
+    <>
+      <Navbar />
+      <TitleSection />
+      <NewsAndLinksSection />
+      <WhoSection />
+      <ScheduleSection />
+      <ContactSection />
       <SectionDivider />
       <Footer />
     </>

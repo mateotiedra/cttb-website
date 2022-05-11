@@ -112,7 +112,7 @@ function Navbar({ admin, coverPage, empty }) {
                 component={RouterLink}
                 to={linkObj.to}
                 sx={{
-                  mx: 2,
+                  mx: 1,
                   px: 1,
                   py: 2,
                   textTransform: 'uppercase',
