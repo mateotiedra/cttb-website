@@ -3,12 +3,26 @@ import Navbar from '../../components/Navbar/Navbar';
 
 import { Box } from '@mui/system';
 import imgCarousel1 from '../../assets/images/home-carousel-1.jpeg';
-import { Link, Paper, Typography } from '@mui/material';
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Link,
+  List,
+  ListItem,
+  ListItemText,
+  Paper,
+  Typography,
+} from '@mui/material';
 import SectionDivider from '../../components/SectionDivider/SectionDivider';
 import SectionContainer from '../../components/SectionContainer/SectionContainer';
 import TrainingSchedule from '../../components/TrainingSchedule/TrainingSchedule';
 import Footer from '../../components/Footer/Footer';
 import PreviewCard from '../../components/PreviewCard/PreviewCard';
+import HomeLogic from './HomeLogic';
 
 function TitleSection() {
   return (
@@ -43,51 +57,22 @@ function TitleSection() {
   );
 }
 
-function NewsAndLinksSection() {
-  const usefulLinks = [
-    {
-      title: 'Fédération suisse de tennis de table (STT)',
-      href: 'https://swisstabletennis.ch/',
-    },
-    {
-      title: 'Association Genevoise de Tennis de Table (AGTT)',
-      href: 'https://www.agtt.ch/',
-    },
-    {
-      title: 'Pyngpong.info (incription aux tournois)',
-      href: 'https://pyngpong.info/',
-    },
-    {
-      title: 'Click-tt (résultats des championnats et classements)',
-      href: 'https://www.click-tt.ch/',
-    },
-    {
-      title: 'Fédération Internationale de Tennis de Table (ITTF)',
-      href: 'https://www.ittf.com/',
-    },
-  ];
+function NewsSection() {
   return (
     <>
-      <SectionContainer sx={{ position: 'relative', top: -85, zIndex: 30 }}>
+      <SectionDivider />
+      <SectionContainer>
+        <Typography variant='h2' sx={{ mb: 3 }}>
+          News
+        </Typography>
         <Box
           sx={{
             display: 'flex',
             flexDirection: { xs: 'column', sm: 'column', md: 'row' },
             gap: 6,
-            px: 3,
           }}
         >
           <PreviewCard title='Actualité' to='/actualite' />
-          <PreviewCard title='Liens utiles'>
-            {usefulLinks.map((usefulLink) => (
-              <Link
-                href={usefulLink.href}
-                sx={{ alignSelf: 'flex-start', py: 1 }}
-              >
-                {usefulLink.title}
-              </Link>
-            ))}
-          </PreviewCard>
         </Box>
       </SectionContainer>
     </>
@@ -97,6 +82,7 @@ function NewsAndLinksSection() {
 function WhoSection() {
   return (
     <>
+      <SectionDivider />
       <SectionContainer>
         <Typography variant='h2' sx={{ mb: 3 }}>
           Qui sommes nous ?
@@ -156,16 +142,102 @@ function ContactSection() {
   );
 }
 
+function LinksDialog({ opened, handleOpen, handleClose }) {
+  const usefulLinks = [
+    {
+      title: 'Fédération suisse de tennis de table (STT)',
+      href: 'https://swisstabletennis.ch/',
+    },
+    {
+      title: 'Association Genevoise de Tennis de Table (AGTT)',
+      href: 'https://www.agtt.ch/',
+    },
+    {
+      title: 'Pyngpong.info (incription aux tournois)',
+      href: 'https://pyngpong.info/',
+    },
+    {
+      title: 'Click-tt (résultats des championnats et classements)',
+      href: 'https://www.click-tt.ch/',
+    },
+    {
+      title: 'Fédération Internationale de Tennis de Table (ITTF)',
+      href: 'https://www.ittf.com/',
+    },
+  ];
+  return (
+    <>
+      <Button
+        variant='contained'
+        size='large'
+        sx={{
+          margin: 0,
+          top: 'auto',
+          right: 20,
+          bottom: 20,
+          left: 'auto',
+          position: 'fixed',
+        }}
+        onClick={handleOpen}
+      >
+        Liens utiles
+      </Button>
+      <Dialog
+        open={opened}
+        onClose={handleClose}
+        aria-labelledby='alert-dialog-title'
+        aria-describedby='alert-dialog-description'
+      >
+        <DialogTitle id='alert-dialog-title'>Liens utiles</DialogTitle>
+        <List sx={{ pt: 0 }}>
+          {usefulLinks.map((usefulLink) => (
+            <ListItem
+              button
+              onClick={() => {
+                window.open(usefulLink.href);
+              }}
+              key={usefulLink.title}
+            >
+              <Link
+                sx={{
+                  px: 2,
+                  '&:hover': {
+                    textDecoration: 'none',
+                  },
+                }}
+              >
+                {usefulLink.title}
+              </Link>
+            </ListItem>
+          ))}
+        </List>
+        <DialogActions>
+          <Button onClick={handleClose} autoFocus>
+            Ok
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
+  );
+}
+
 function Home() {
+  const { linksDialogOpen, handleCloseLinksDialog, handleOpenLinksDialog } =
+    HomeLogic();
   return (
     <>
       <Navbar />
       <TitleSection />
-      <NewsAndLinksSection />
+      {/* <NewsSection /> */}
       <WhoSection />
       <ScheduleSection />
       <ContactSection />
       <SectionDivider />
+      <LinksDialog
+        opened={linksDialogOpen}
+        handleClose={handleCloseLinksDialog}
+        handleOpen={handleOpenLinksDialog}
+      />
       <Footer />
     </>
   );
