@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Button, Typography } from '@mui/material';
 
-function PageButton({ text, onClick }) {
+function PageButton({ text, onClick, ...props }) {
   return (
     <Button
       variant='contained'
@@ -16,6 +16,7 @@ function PageButton({ text, onClick }) {
         position: 'fixed',
       }}
       onClick={onClick}
+      {...props}
     >
       <Typography variant='button'>{text}</Typography>
     </Button>
