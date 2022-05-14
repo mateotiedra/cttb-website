@@ -22,6 +22,8 @@ import SectionContainer from '../../components/SectionContainer/SectionContainer
 import TrainingSchedule from '../../components/TrainingSchedule/TrainingSchedule';
 import Footer from '../../components/Footer/Footer';
 import PreviewCard from '../../components/PreviewCard/PreviewCard';
+import PageButton from '../../components/PageButton/PageButton';
+
 import HomeLogic from './HomeLogic';
 
 function TitleSection() {
@@ -30,7 +32,7 @@ function TitleSection() {
       <Box
         sx={{
           width: '100%',
-          height: '70vh',
+          height: '65vh',
           backgroundImage: `url(${imgCarousel1})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
@@ -167,21 +169,7 @@ function LinksDialog({ opened, handleOpen, handleClose }) {
   ];
   return (
     <>
-      <Button
-        variant='contained'
-        size='large'
-        sx={{
-          margin: 0,
-          top: 'auto',
-          right: 20,
-          bottom: 20,
-          left: 'auto',
-          position: 'fixed',
-        }}
-        onClick={handleOpen}
-      >
-        Liens utiles
-      </Button>
+      <PageButton onClick={handleOpen} text='Liens utiles' />
       <Dialog
         open={opened}
         onClose={handleClose}

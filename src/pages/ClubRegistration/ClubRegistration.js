@@ -17,6 +17,7 @@ import SectionContainer from '../../components/SectionContainer/SectionContainer
 import SectionDivider from '../../components/SectionDivider/SectionDivider';
 import DuesTables from '../../components/DuesTables/DuesTables';
 import Footer from '../../components/Footer/Footer';
+import PageButton from '../../components/PageButton/PageButton';
 
 function ClubRegistration(props) {
   const FreeLessonsSection = (
@@ -110,22 +111,11 @@ function ClubRegistration(props) {
       <SectionDivider />
       {PaymentsSection}
       <SectionDivider />
-      <Button
-        variant='contained'
-        size='large'
-        sx={{
-          margin: 0,
-          top: 'auto',
-          right: 20,
-          bottom: 20,
-          left: 'auto',
-          position: 'fixed',
-        }}
+      <PageButton
+        text='Devenir membre'
         component={RouterLink}
         to='/adhesion/formulaire'
-      >
-        Devenir membre
-      </Button>
+      />
       <Footer />
     </>
   );
