@@ -2,7 +2,7 @@ import React from 'react';
 import { HashLink as RouterLink } from 'react-router-hash-link';
 import { Divider, Link, Paper, Typography } from '@mui/material';
 
-function PreviewCard({ children, title, description, to }) {
+function PreviewCard({ children, title, description, to, sx }) {
   return (
     <Paper
       sx={{
@@ -10,6 +10,7 @@ function PreviewCard({ children, title, description, to }) {
         flexDirection: 'column',
         p: 4,
         flexGrow: 1,
+        ...sx,
       }}
     >
       <Typography variant='h4'>{title}</Typography>

@@ -8,6 +8,8 @@ import ClubRegistrationForm from './pages/ClubRegistrationForm/ClubRegistrationF
 import MemberSpace from './pages/MemberSpace/MemberSpace';
 import Auth from './pages/Auth/Auth';
 import MemberManager from './pages/MemberManager/MemberManager';
+import AllNews from './pages/AllNews/AllNews';
+import News from './pages/News/News';
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
         <Route path='/stages' element={<Stage />} />
         <Route path='/adhesion' element={<ClubRegistration />} />
         <Route path='/adhesion/formulaire' element={<ClubRegistrationForm />} />
+
         <Route path='/membre' element={<MemberSpace />} />
         <Route
           path='/membre/connexion'
@@ -27,6 +30,9 @@ function App() {
           element={<Auth startingMode='register' />}
         />
         <Route path='/admin/membres' element={<MemberManager />} />
+
+        <Route path='/actualite' element={<AllNews />} />
+        <Route path='/actualite/:id' element={<News />} />
       </Routes>
     </Router>
   );

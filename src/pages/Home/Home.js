@@ -25,41 +25,10 @@ import PreviewCard from '../../components/PreviewCard/PreviewCard';
 import PageButton from '../../components/PageButton/PageButton';
 
 import HomeLogic from './HomeLogic';
+import NewsCardsHolder from '../../components/NewsCardsHolder/NewsCardsHolder';
+import HeadTitle from '../../components/HeadTitle/HeadTitle';
 
-function TitleSection() {
-  return (
-    <>
-      <Box
-        sx={{
-          width: '100%',
-          height: '65vh',
-          backgroundImage: `url(${imgCarousel1})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          position: 'relative',
-          display: 'flex',
-          alignItems: 'center',
-        }}
-      >
-        <Box
-          sx={{
-            position: 'absolute',
-            zIndex: 10,
-            height: '100%',
-            width: '100%',
-            backgroundColor: 'background.default',
-            opacity: 0.7,
-          }}
-        />
-        <SectionContainer sx={{ zIndex: 15, position: 'relative', top: -35 }}>
-          <Typography variant='h1'>Club de Tennis de Table Bernex</Typography>
-        </SectionContainer>
-      </Box>
-    </>
-  );
-}
-
-function NewsSection() {
+function NewsSection({ newsList }) {
   return (
     <>
       <SectionDivider />
@@ -67,15 +36,7 @@ function NewsSection() {
         <Typography variant='h2' sx={{ mb: 3 }}>
           News
         </Typography>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: { xs: 'column', sm: 'column', md: 'row' },
-            gap: 6,
-          }}
-        >
-          <PreviewCard title='Actualité' to='/actualite' />
-        </Box>
+        <NewsCardsHolder newsList={newsList} />
       </SectionContainer>
     </>
   );
@@ -210,13 +171,17 @@ function LinksDialog({ opened, handleOpen, handleClose }) {
 }
 
 function Home() {
-  const { linksDialogOpen, handleCloseLinksDialog, handleOpenLinksDialog } =
-    HomeLogic();
+  const {
+    linksDialogOpen,
+    handleCloseLinksDialog,
+    handleOpenLinksDialog,
+    newsList,
+  } = HomeLogic();
   return (
     <>
       <Navbar />
-      <TitleSection />
-      {/* <NewsSection /> */}
+      <HeadTitle image={imgCarousel1}>Club de Tennis de Table Bernex</HeadTitle>
+      {newsList && <NewsSection newsList={newsList} />}
       <WhoSection />
       <ScheduleSection />
       <ContactSection />
