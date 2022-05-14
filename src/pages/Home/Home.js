@@ -1,13 +1,11 @@
 import React from 'react';
-import Navbar from '../../components/Navbar/Navbar';
 
-import { Box } from '@mui/system';
-import imgCarousel1 from '../../assets/images/home-carousel-1.jpeg';
+import { HashLink as RouterLink } from 'react-router-hash-link';
 import {
   Button,
   Dialog,
   DialogActions,
-  DialogContent,
+  Box,
   DialogContentText,
   DialogTitle,
   Link,
@@ -17,26 +15,38 @@ import {
   Paper,
   Typography,
 } from '@mui/material';
+
 import SectionDivider from '../../components/SectionDivider/SectionDivider';
 import SectionContainer from '../../components/SectionContainer/SectionContainer';
 import TrainingSchedule from '../../components/TrainingSchedule/TrainingSchedule';
 import Footer from '../../components/Footer/Footer';
 import PreviewCard from '../../components/PreviewCard/PreviewCard';
 import PageButton from '../../components/PageButton/PageButton';
-
-import HomeLogic from './HomeLogic';
 import NewsCardsHolder from '../../components/NewsCardsHolder/NewsCardsHolder';
 import HeadTitle from '../../components/HeadTitle/HeadTitle';
+import Navbar from '../../components/Navbar/Navbar';
+
+import imgCarousel1 from '../../assets/images/home-carousel-1.jpeg';
+
+import HomeLogic from './HomeLogic';
 
 function NewsSection({ newsList }) {
   return (
     <>
       <SectionDivider />
-      <SectionContainer>
+      <SectionContainer sx={{ display: 'flex', flexDirection: 'column' }}>
         <Typography variant='h2' sx={{ mb: 3 }}>
           News
         </Typography>
-        <NewsCardsHolder newsList={newsList} />
+        <NewsCardsHolder newsList={newsList} oneLine />
+        <Button
+          variant='contained'
+          sx={{ mt: 4, width: '100%', alignSelf: 'center' }}
+          component={RouterLink}
+          to='/actualite'
+        >
+          <Typography variant='button'>Voir tout</Typography>
+        </Button>
       </SectionContainer>
     </>
   );

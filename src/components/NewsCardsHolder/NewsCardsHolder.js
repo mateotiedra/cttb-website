@@ -10,10 +10,12 @@ function NewsCardsHolder({ newsList, oneLine }) {
       sx={{
         display: 'flex',
         flexDirection: 'row',
-        gap: 4,
-        flexWrap: oneLine ? 'noWrap' : 'wrap',
+        gap: !oneLine && 4,
+        rowGap: 4,
+        flexWrap: 'wrap',
         overflow: 'hidden',
-        justifyContent: 'center',
+        justifyContent: oneLine ? 'space-between' : 'center',
+        width: '100%',
       }}
     >
       {newsList.map((news) => {
