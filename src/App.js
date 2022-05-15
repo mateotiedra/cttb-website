@@ -33,6 +33,7 @@ function App() {
 
         <Route path='/actualite' element={<AllNews />} />
         <Route path='/actualite/:id' element={<News />} />
+        <Route path='/actualite/nouvelle' element={<News editMode />} />
       </Routes>
     </Router>
   );

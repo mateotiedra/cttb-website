@@ -1,8 +1,9 @@
 import React from 'react';
 
 import { Button, Typography } from '@mui/material';
+import { HashLink } from 'react-router-hash-link';
 
-function PageButton({ text, onClick, ...props }) {
+function PageButton({ text, onClick, to, ...props }) {
   return (
     <Button
       variant='contained'
@@ -16,6 +17,8 @@ function PageButton({ text, onClick, ...props }) {
         position: 'fixed',
       }}
       onClick={onClick}
+      component={to && HashLink}
+      to={to}
       {...props}
     >
       <Typography variant='button'>{text}</Typography>

@@ -17,12 +17,13 @@ const PageLogic = () => {
 
   const useLoadPage = (actionIn, options) => {
     useEffect(() => {
-      const { actionOut, allowedRoles, setUserData } = options || {};
+      const { actionOut, allowedRoles, setUserData, musFetchUserData } =
+        options || {};
       if (!hasFetchedData.current) {
         hasFetchedData.current = true;
-        if (allowedRoles || setUserData)
-          fetchUserData(allowedRoles, setUserData).then(() => {
-            actionIn && actionIn();
+        if (allowedRoles || setUserData || musFetchUserData)
+          fetchUserData(allowedRoles, setUserData).then((userData) => {
+            actionIn && actionIn(userData);
           });
         else actionIn && actionIn();
       }
@@ -33,42 +34,45 @@ const PageLogic = () => {
 
   const fetchUserData = (allowedRoles, setUserData) =>
     new Promise((resolve, reject) => {
-      if (allowedRoles && !localStorage.getItem('accessToken')) {
-        navigate('/membre/connexion', { replace: true });
-        return;
-      }
-
-      axios
-        .get(API_ORIGIN + '/user/u', {
-          headers: {
-            'x-access-token': localStorage.getItem('accessToken'),
-          },
-        })
-        .then(({ data }) => {
-          const user = data;
-          if (allowedRoles) {
-            if (allowedRoles.includes(user.role) && user.status === 'active') {
-              console.log('fetch user');
-              setUserData && setUserData(user);
+      if (localStorage.getItem('accessToken')) {
+        axios
+          .get(API_ORIGIN + '/user/u', {
+            headers: {
+              'x-access-token': localStorage.getItem('accessToken'),
+            },
+          })
+          .then(({ data }) => {
+            const user = data;
+            if (allowedRoles) {
+              if (
+                allowedRoles.includes(user.role) &&
+                user.status === 'active'
+              ) {
+                setUserData && setUserData(user);
+              } else {
+                navigate('/', { replace: true });
+                reject();
+              }
             } else {
-              navigate('/', { replace: true });
+              setUserData && setUserData(user);
+            }
+            resolve(user);
+          })
+          .catch((err) => {
+            if (
+              allowedRoles &&
+              (getStatusCode(err) === 401 || getStatusCode(err) === 403)
+            ) {
+              localStorage.removeItem('accessToken');
+              navigate('/membre/connexion', { replace: true });
               reject();
             }
-          } else {
-            setUserData && setUserData(user);
-          }
-          resolve();
-        })
-        .catch((err) => {
-          if (
-            allowedRoles &&
-            (getStatusCode(err) === 401 || getStatusCode(err) === 403)
-          ) {
-            localStorage.removeItem('accessToken');
-            navigate('/membre/connexion', { replace: true });
-            reject();
-          }
-        });
+          });
+      } else if (allowedRoles) {
+        navigate('/membre/connexion', { replace: true });
+      } else {
+        resolve();
+      }
     });
 
   return {

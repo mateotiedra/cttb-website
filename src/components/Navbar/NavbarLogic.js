@@ -5,7 +5,7 @@ const NavbarLogic = (admin) => {
     ? [
         { text: 'Espace membre', to: '/membre' },
         { text: 'Membres', to: '/admin/membres' },
-        { text: 'Actualité', to: '/admin/actu' },
+        { text: 'Actualité', to: '/actualite' },
       ]
     : [
         { text: 'Horaires', to: '/#horaires' },

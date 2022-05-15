@@ -10,6 +10,8 @@ const FormTextField = ({
   errors,
   registration,
   type,
+  multiline,
+  onChange,
 }) => {
   return (
     <TextField
@@ -25,6 +27,8 @@ const FormTextField = ({
       variant='filled'
       error={errors[id] !== undefined}
       helperText={errors[id] && errors[id].message}
+      multiline
+      onChange={onChange}
       {...registration}
     />
   );

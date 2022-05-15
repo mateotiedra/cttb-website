@@ -31,25 +31,27 @@ import imgCarousel1 from '../../assets/images/home-carousel-1.jpeg';
 import HomeLogic from './HomeLogic';
 
 function NewsSection({ newsList }) {
-  return (
-    <>
-      <SectionDivider />
-      <SectionContainer sx={{ display: 'flex', flexDirection: 'column' }}>
-        <Typography variant='h2' sx={{ mb: 3 }}>
-          News
-        </Typography>
-        <NewsCardsHolder newsList={newsList} oneLine />
-        <Button
-          variant='contained'
-          sx={{ mt: 4, width: '100%', alignSelf: 'center' }}
-          component={RouterLink}
-          to='/actualite'
-        >
-          <Typography variant='button'>Voir tout</Typography>
-        </Button>
-      </SectionContainer>
-    </>
-  );
+  if (newsList && newsList.length)
+    return (
+      <>
+        <SectionDivider />
+        <SectionContainer sx={{ display: 'flex', flexDirection: 'column' }}>
+          <Typography variant='h2' sx={{ mb: 3 }}>
+            News
+          </Typography>
+          <NewsCardsHolder newsList={newsList} oneLine />
+          <Button
+            variant='contained'
+            sx={{ mt: 4, width: '100%', alignSelf: 'center' }}
+            component={RouterLink}
+            to='/actualite'
+          >
+            <Typography variant='button'>Voir tout</Typography>
+          </Button>
+        </SectionContainer>
+      </>
+    );
+  else return <></>;
 }
 
 function WhoSection() {
@@ -191,7 +193,7 @@ function Home() {
     <>
       <Navbar />
       <HeadTitle image={imgCarousel1}>Club de Tennis de Table Bernex</HeadTitle>
-      {newsList && <NewsSection newsList={newsList} />}
+      <NewsSection newsList={newsList} />
       <WhoSection />
       <ScheduleSection />
       <ContactSection />

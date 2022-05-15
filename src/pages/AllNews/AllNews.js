@@ -9,10 +9,10 @@ import Loading from '../Loading/Loading';
 
 import AllNewsLogic from './AllNewsLogic';
 import NewsCardsHolder from '../../components/NewsCardsHolder/NewsCardsHolder';
+import PageButton from '../../components/PageButton/PageButton';
 
 function AllNews() {
   const { pageStatus, mod, newsList } = AllNewsLogic();
-  console.log(newsList);
 
   if (pageStatus === 'loading') return <Loading />;
   return (
@@ -22,6 +22,8 @@ function AllNews() {
       <SectionContainer>
         <NewsCardsHolder newsList={newsList} />
       </SectionContainer>
+      {mod && <PageButton text='Nouvelle news' to='/actualite/nouvelle' />}
+      <Footer />
     </>
   );
 }

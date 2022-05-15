@@ -6,7 +6,7 @@ function Footer() {
     <Box
       component='footer'
       sx={{
-        py: 3,
+        py: 6,
         px: 2,
         mt: 'auto',
       }}
