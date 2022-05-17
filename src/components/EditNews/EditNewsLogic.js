@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
@@ -13,6 +13,7 @@ const EditNewsLogic = ({ newsData, setPageStatus }) => {
     register,
     formState: { errors },
     handleSubmit,
+    getValues,
   } = useForm({
     defaultValues: {
       title: newsData && newsData.title,
@@ -49,7 +50,7 @@ const EditNewsLogic = ({ newsData, setPageStatus }) => {
       links: links,
     };
     const finishUpdate = ({ data }) => {
-      navigate('/actualite/' + data.id, {});
+      navigate('/actualite/' + data.id, { replace: true });
       window.location.reload(true);
     };
     setButtonLoading(true);
@@ -98,6 +99,21 @@ const EditNewsLogic = ({ newsData, setPageStatus }) => {
       });
   };
 
+  //Keep counts of where to add carriage return
+  const newlineList = useRef([]);
+
+  // When return is pressed in the multiline text field
+  const onReturnPress = (event) => {
+    if (event.key === 'Enter') {
+    }
+  };
+
+  const addNewlineToText = (text, newlineList) => {
+    newlineList.forEach((newlineIndex) => {
+      text = text.slice(0, newlineIndex) + '\n' + text.slice(newlineIndex);
+    });
+  };
+
   return {
     register,
     onSubmit: handleSubmit(onSubmit),
@@ -110,6 +126,7 @@ const EditNewsLogic = ({ newsData, setPageStatus }) => {
     handleCloseDeleteDialog,
     deleteDialogOpen,
     deleteNews,
+    onReturnPress,
   };
 };
 

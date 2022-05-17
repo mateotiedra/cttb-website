@@ -137,6 +137,7 @@ function EditNews({ setPageStatus, pageStatus, newsData }) {
     handleCloseDeleteDialog,
     handleOpenDeleteDialog,
     deleteNews,
+    onReturnPress,
   } = EditNewsLogic({
     newsData,
     setPageStatus,
@@ -174,6 +175,7 @@ function EditNews({ setPageStatus, pageStatus, newsData }) {
             errors={errors}
             registration={register('description', {})}
             multiline
+            onKeyPress={onReturnPress}
           />
           <LinksSection
             links={links}

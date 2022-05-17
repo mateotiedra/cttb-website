@@ -62,10 +62,13 @@ function News(props) {
         <Typography variant='h2' sx={{ overflowWrap: 'anywhere' }}>
           {newsData.title}
         </Typography>
-        <Typography variant='body2' color='text.secondary' sx={{ mb: 2 }}>
+        <Typography variant='body2' color='text.secondary' sx={{ my: 2 }}>
           {formatedDate}
         </Typography>
-        <Typography variant='body1' sx={{ overflowWrap: 'anywhere' }}>
+        <Typography
+          variant='body1'
+          sx={{ overflowWrap: 'anywhere', whiteSpace: 'pre-line' }}
+        >
           {newsData.description}
         </Typography>
       </SectionContainer>

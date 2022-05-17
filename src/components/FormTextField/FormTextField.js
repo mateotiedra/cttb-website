@@ -12,6 +12,7 @@ const FormTextField = ({
   type,
   multiline,
   onChange,
+  ...props
 }) => {
   return (
     <TextField
@@ -30,6 +31,7 @@ const FormTextField = ({
       multiline
       onChange={onChange}
       {...registration}
+      {...props}
     />
   );
 };

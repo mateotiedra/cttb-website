@@ -38,12 +38,11 @@ function NewsCard({ title, id, image, createdAt, children }) {
           flexDirection: 'column',
           flexGrow: 1,
           p: 3,
-          maxHeight: '40%',
+          maxHeight: '42%',
         }}
       >
         <Box
           sx={{
-            height: 60,
             maxWidth: '100%',
             display: 'block',
             overflow: 'hidden',
@@ -51,7 +50,7 @@ function NewsCard({ title, id, image, createdAt, children }) {
           }}
         >
           <Typography variant='h5'>{title}</Typography>
-          <Typography variant='body2'>{children}</Typography>
+          {/* <Typography variant='body2'>{children}</Typography> */}
         </Box>
         <Box
           sx={{
