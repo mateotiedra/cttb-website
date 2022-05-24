@@ -33,6 +33,7 @@ function Copyright(props) {
   );
 }
 
+// Signin/signup page 'https://cttbernex.ch/membre/connexion'
 export default function Auth({ startingMode }) {
   const { register, errors, onSubmit, pageStatus, loginMode, switchLoginMode } =
     AuthLogic({ startingMode: startingMode });

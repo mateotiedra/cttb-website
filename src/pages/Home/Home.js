@@ -5,14 +5,10 @@ import {
   Button,
   Dialog,
   DialogActions,
-  Box,
-  DialogContentText,
   DialogTitle,
   Link,
   List,
   ListItem,
-  ListItemText,
-  Paper,
   Typography,
 } from '@mui/material';
 
@@ -20,7 +16,6 @@ import SectionDivider from '../../components/SectionDivider/SectionDivider';
 import SectionContainer from '../../components/SectionContainer/SectionContainer';
 import TrainingSchedule from '../../components/TrainingSchedule/TrainingSchedule';
 import Footer from '../../components/Footer/Footer';
-import PreviewCard from '../../components/PreviewCard/PreviewCard';
 import PageButton from '../../components/PageButton/PageButton';
 import NewsCardsHolder from '../../components/NewsCardsHolder/NewsCardsHolder';
 import HeadTitle from '../../components/HeadTitle/HeadTitle';
@@ -197,7 +192,6 @@ function Home() {
       <WhoSection />
       <ScheduleSection />
       <ContactSection />
-      <SectionDivider />
       <LinksDialog
         opened={linksDialogOpen}
         handleClose={handleCloseLinksDialog}

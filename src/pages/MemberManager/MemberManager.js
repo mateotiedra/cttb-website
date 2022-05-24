@@ -39,22 +39,46 @@ function MemberList({
   handleOpenDeleteDialog,
 }) {
   return (
-    <Paper sx={{ width: '100%', bgcolor: 'background.paper', px: 4, py: 3 }}>
+    <Paper
+      sx={{
+        width: '100%',
+        bgcolor: 'background.paper',
+        px: { xs: 2, sm: 4 },
+        py: 3,
+      }}
+    >
       <List>
         {userList.map((user, id) => {
           return (
             <React.Fragment key={user.email}>
-              <ListItem sx={{ m: 1 }}>
+              <ListItem
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  flexWrap: 'wrap',
+                }}
+              >
                 <ListItemAvatar>
                   <Avatar>
                     <FiUser />
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText primary={user.email} />
-                <Box>
+                <Box
+                  sx={{
+                    my: 1,
+                    pr: 1,
+                    gap: 1,
+                    flexGrow: 1,
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'flex-end',
+                  }}
+                >
                   <FormControl
                     variant='standard'
-                    sx={{ minWidth: 200, mr: 2 }}
+                    sx={{ minWidth: 200 }}
                     disabled={!allowedToChange}
                   >
                     <InputLabel id='role'>Role</InputLabel>
@@ -116,6 +140,7 @@ function DeleteDialog({ opened, deleteUser, handleClose }) {
   );
 }
 
+// https://cttbernex.ch/admin/membres
 function MemberManager() {
   const {
     pageStatus,

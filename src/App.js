@@ -11,6 +11,7 @@ import MemberManager from './pages/MemberManager/MemberManager';
 import AllNews from './pages/AllNews/AllNews';
 import News from './pages/News/News';
 
+// Manage routing
 function App() {
   return (
     <Router>

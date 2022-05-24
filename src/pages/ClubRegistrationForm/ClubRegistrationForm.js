@@ -28,6 +28,7 @@ const LateralBox = (props) => {
   );
 };
 
+// https://cttbernex.ch/adhesion/form
 function ClubRegistrationForm(props) {
   const {
     register,

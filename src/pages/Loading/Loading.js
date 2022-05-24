@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { CircularProgress, Box, Typography } from '@mui/material';
 import Navbar from '../../components/Navbar/Navbar';
 
+// The loading page
 function Loading() {
   const [seconds, setSeconds] = useState(3);
   const [displayMessage, setDisplayMessage] = useState(false);

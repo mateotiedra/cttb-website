@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {
-  Button,
   Divider,
   Link,
   List,
@@ -19,6 +18,7 @@ import DuesTables from '../../components/DuesTables/DuesTables';
 import Footer from '../../components/Footer/Footer';
 import PageButton from '../../components/PageButton/PageButton';
 
+// https://cttbernex.ch/adhesion
 function ClubRegistration(props) {
   const FreeLessonsSection = (
     <SectionContainer>

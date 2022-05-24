@@ -1,5 +1,6 @@
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
+// Manage the website theme
 let theme = createTheme({
   palette: {
     mode: 'dark',
