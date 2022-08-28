@@ -3,19 +3,13 @@ const DuesTablesLogic = (props) => {
     {
       title: 'Non licenciés',
       description: "Accès aux entrainements selon son groupe durant l'année.",
-      options: [
-        { name: 'Membre actif', price: 160 },
-        { name: 'AVS-AI-Chômeur (sur demande)', price: 110 },
-      ],
+      options: [{ name: 'Membre actif', price: 200 }],
     },
     {
       title: 'Licenciés',
       description:
         'Accès aux entrainements + aux compétitions officielles en Suisse.',
-      options: [
-        { name: 'Compétiteur', price: 360 },
-        { name: 'AVS-AI-Chômeur (sur demande)', price: 280 },
-      ],
+      options: [{ name: 'Compétiteur', price: 200 }],
     },
   ];
   return { duesTablesObj };
