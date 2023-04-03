@@ -80,11 +80,9 @@ const StageLogic = ({ history }) => {
 
   if (!hasFetchedData.current) {
     hasFetchedData.current = true;
-    fetchStagesData('stage-perf-2022')(() => {
-      fetchStagesData('stage-all-2022')(() => {
-        setDatesOptions(fetchedDatesOptions.current);
-        setPageStatus('active');
-      });
+    fetchStagesData('stage-mixte-2023')(() => {
+      setDatesOptions(fetchedDatesOptions.current);
+      setPageStatus('active');
     });
   }
 
