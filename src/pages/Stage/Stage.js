@@ -197,6 +197,21 @@ function Stage(props) {
         />
       </Box>
       <Box>
+        <Box>
+          <SelectField
+            register={register}
+            id='formula'
+            label='Participation'
+            options={[
+              { value: 'day', text: 'Journées complètes' },
+              { value: 'morning', text: 'Que les matins' },
+              { value: 'afternoon', text: 'Que les après-midi' },
+            ]}
+            disabled={formDisabled}
+          />
+        </Box>
+      </Box>
+      {/* <Box>
         <SelectField
           register={register}
           id='allWeek'
@@ -211,7 +226,7 @@ function Stage(props) {
       <WeekPresence
         disabled={weekPresenceChoserDisabled || formDisabled}
         onChange={onWeekPresenceChange}
-      />
+      /> */}
     </>
   );
 

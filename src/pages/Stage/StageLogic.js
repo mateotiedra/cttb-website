@@ -25,8 +25,10 @@ const StageLogic = ({ history }) => {
     : true;
 
   // Formated presence values
-  const presenceValues = useRef([]);
-  const halfDayNbr = useRef(10);
+  /* const presenceValues = useRef([]);
+  const halfDayNbr = useRef(10); */
+  const presenceValues = watch('formula');
+  const halfDayNbr = presenceValues === 'day' ? 10 : 5;
 
   const onWeekPresenceChange = (newWeekPresenceValues) => {
     var newWeekPresenceFormated = '';
