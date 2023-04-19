@@ -102,7 +102,7 @@ const StageLogic = ({ history }) => {
           email: undefined,
           firstName: undefined,
           lastName: undefined,
-          halfDayNbr: halfDayNbr.current,
+          halfDayNbr: presenceValues === 'day' ? 10 : 5,
           presenceValues: presenceValues.current,
         },
       })
