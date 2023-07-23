@@ -15,7 +15,6 @@ const TrainingScheduleLogic = (props) => {
       trainings: [
         { day: 'Mardi', hour: '18h15-19h45' },
         { day: 'Jeudi', hour: '16h45-18h15' },
-        { day: 'Vendredi ', hour: '18h15-19h45' },
       ],
     },
     {
@@ -23,7 +22,7 @@ const TrainingScheduleLogic = (props) => {
       description: 'Sur sélection',
       trainings: [
         { day: 'Lundi', hour: '18h15-19h45' },
-        { day: 'Mercredi', hour: '18h15-19h45' },
+        { day: 'Mardi', hour: '18h15-19h45' },
         { day: 'Jeudi', hour: '18h15-19h45' },
         { day: 'Vendredi', hour: '18h15-19h45' },
       ],

@@ -44,8 +44,9 @@ function Navbar({ admin, coverPage, empty }) {
               <ListItem
                 button
                 key={linkObj.text}
-                component={RouterLink}
-                to={linkObj.to}
+                component={linkObj.href ? 'a' : RouterLink}
+                to={linkObj.to ?? ''}
+                href={linkObj.href ?? ''}
                 sx={{
                   textTransform: 'uppercase',
                   color: 'text.primary',
@@ -109,8 +110,9 @@ function Navbar({ admin, coverPage, empty }) {
             return (
               <Link
                 key={linkObj.text}
-                component={RouterLink}
-                to={linkObj.to}
+                component={linkObj.href ? 'a' : RouterLink}
+                to={linkObj.to ?? ''}
+                href={linkObj.href ?? ''}
                 sx={{
                   mx: 1,
                   px: 1,
